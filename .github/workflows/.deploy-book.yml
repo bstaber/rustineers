@@ -19,6 +19,9 @@ jobs:
       - name: Install mdBook
         run: cargo install mdbook --locked
 
+      - name: Install mdBook-katex
+        run: cargo install mdbook-katex
+
       - name: Build the book
         run: cd book && mdbook build
 
