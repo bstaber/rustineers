@@ -1,0 +1,1 @@
+# Idiomatic · ndarray 🧩  

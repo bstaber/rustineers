@@ -6,3 +6,7 @@ title = "Learn Rust with Applied Sciences"
 
 [preprocessor.katex]
 after = ["links"]
+
+[output.html.fold]
+enable = true
+level = 1

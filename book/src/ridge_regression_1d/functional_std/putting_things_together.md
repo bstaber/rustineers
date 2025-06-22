@@ -64,7 +64,7 @@ Here, `crate` refers to the root of this library crate—`lib.rs`.
 Now let's see how you could use the library from a binary crate:
 
 ```rust
-{{#include ../../../crates/ridge_regression_1d/src/main.rs}}
+{{#include ../../../../crates/ridge_regression_1d/src/main.rs}}
 ```
 
 ## Summary

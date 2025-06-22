@@ -1,4 +1,4 @@
-# One step further: Exposing a clean API
+# Exposing a clean API
 
 Until now, we've manually chained together the loss, gradient, and optimization steps. This is great for learning, but in real projects, we often want a simplified and reusable API.
 
@@ -11,7 +11,7 @@ In this crate, `lib.rs` is responsible for organizing and exposing the component
 We can re-export key functions and define top-level utilities like `fit` and `predict`. The complete `lib.rs` file now looks like this:
 
 ```rust
-{{#include ../../../crates/ridge_regression_1d/src/lib.rs:exports_and_fit}}
+{{#include ../../../../crates/ridge_regression_1d/src/lib.rs:exports_and_fit}}
 ```
 
 ## Example of usage

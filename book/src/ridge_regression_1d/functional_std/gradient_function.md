@@ -14,14 +14,14 @@ This version breaks the computation into two separate steps:
 This is easier to follow and useful for educational purposes.
 
 ```rust
-{{#include ../../../crates/ridge_regression_1d/src/grad_functions.rs:grad_loss_function_naive}}
+{{#include ../../../../crates/ridge_regression_1d/src/grad_functions.rs:grad_loss_function_naive}}
 ```
 
 ## Inlined iterator-based implementation
 In this version, we fuse the residual and gradient computation into a single iterator chain. This avoids intermediate memory allocations and takes full advantage of Rust’s zero-cost abstraction model.
 
 ```rust
-{{#include ../../../crates/ridge_regression_1d/src/grad_functions.rs:grad_loss_function_inline}}
+{{#include ../../../../crates/ridge_regression_1d/src/grad_functions.rs:grad_loss_function_inline}}
 ```
 
 Key differences:
