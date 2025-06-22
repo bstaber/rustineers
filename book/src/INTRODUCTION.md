@@ -4,7 +4,7 @@ Welcome to Rustineers – a learning journey into the Rust programming language 
 
 The goal of this book is to teach Rust by implementing practical examples from fields such as:
 
--* Machine Learning
+* Machine Learning
 * Statistics and Probability
 * Optimization
 * Ordinary Differential Equations (ODEs)
