@@ -1,4 +1,4 @@
-# Examples
+- [Introduction](INTRODUCTION.md)
 
 - [1D Ridge regression](ridge_regression_1d/README.md)
     - [Loss function](ridge_regression_1d/loss_function.md)
