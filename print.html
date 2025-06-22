@@ -1,0 +1,526 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Learn Rust with Applied Sciences</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Learn Rust with Applied Sciences</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="ridge-regression-1d"><a class="header" href="#ridge-regression-1d">Ridge regression 1D</a></h1>
+<p>Here, we implement one-dimensional Ridge Regression*in several styles, using increasing levels of abstraction. It's designed as a learning path for beginners, and focuses on writing idiomatic, clear, and type-safe Rust code. We focus on minimizing this loss function:</p>
+<p>$$
+\mathcal{L}(\beta) = \frac{1}{2n} \sum_{i=1}^n (y_i - \beta x_i)^2 + \lambda \beta^2,,
+$$</p>
+<p>where: $x_i \in \mathbb{R}$ is an input covariate, $y_i \in \mathbb{R}$ is the associated output, $\beta$ is the Ridge coefficient, $\lambda$ is the $L^2$ regularization strength.</p>
+<h2 id="what-youll-learn"><a class="header" href="#what-youll-learn">What you'll learn</a></h2>
+<p>This module is perfect if you're just starting with Rust and want to:</p>
+<ul>
+<li>Write beginner-friendly numerical code</li>
+<li>Understand how to manipulate vectors (<code>Vec&lt;f64&gt;</code>) and slices (<code>&amp;[f64]</code>)</li>
+<li>Write clean and safe code using the standard library only</li>
+<li>Structure your functions with clear responsibilities</li>
+<li>Learn good Rust patterns: immutability, iterators, ownership</li>
+<li>How to make a simple crate out of it</li>
+<li>How to expose a public API</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ridge-loss"><a class="header" href="#ridge-loss">Ridge loss</a></h1>
+<p>In this example, we implement <strong>one-dimensional Ridge Regression loss</strong> using only the <strong>Rust standard library</strong>, without any external crates. This lets us focus on core Rust features such as slices, iterators, and type safety.</p>
+<h2 id="naive-implementation"><a class="header" href="#naive-implementation">Naive implementation</a></h2>
+<p>We now present a straightforward implementation of the <strong>Ridge regression loss function</strong>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn loss_function_naive(x: &amp;[f64], y: &amp;[f64], beta: f64, lambda2: f64) -&gt; f64 {
+    assert_eq!(x.len(), y.len(), "x and y must have the same length");
+
+    let n: usize = x.len();
+    let y_hat: Vec&lt;f64&gt; = mul_scalar_vec(beta, x);
+    let residuals: Vec&lt;f64&gt; = subtract_vectors(y, &amp;y_hat);
+    let mse: f64 = residuals.iter().map(|x| x * x).sum::&lt;f64&gt;() / (2.0 * n as f64);
+    mse + lambda2 * beta * beta
+}
+<span class="boring">}</span></code></pre></pre>
+<p>In this example, we use two helper functions that we implement ourselves. A helper function for multiplying a vector by a scalar:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn mul_scalar_vec(scalar: f64, vector: &amp;[f64]) -&gt; Vec&lt;f64&gt; {
+    vector.iter().map(|x| x * scalar).collect()
+}
+<span class="boring">}</span></code></pre></pre>
+<p>We also defined a helper that subtracts two slices element-wise:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn subtract_vectors(a: &amp;[f64], b: &amp;[f64]) -&gt; Vec&lt;f64&gt; {
+    assert_eq!(a.len(), b.len(), "Input vectors must have the same length");
+    a.iter().zip(b.iter()).map(|(x, y)| x - y).collect()
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Rather than using explicit loops, this implementation uses Rust’s iterator combinators, which the compiler optimizes into efficient code. This zero-cost abstraction keeps the code both readable and fast.</p>
+<h3 id="why-use-f64-instead-of-vecf64"><a class="header" href="#why-use-f64-instead-of-vecf64">Why use <code>&amp;[f64]</code> instead of <code>Vec&lt;f64&gt;</code>?</a></h3>
+<p>Rust distinguishes between:</p>
+<ul>
+<li><code>&amp;Vec&lt;f64&gt;</code> – an owned, growable vector on the heap</li>
+<li><code>&amp;[f64]</code> – a <strong>slice</strong>, i.e., a borrowed view into an array or vector</li>
+</ul>
+<p>The type <code>&amp;[f64]</code> seems to be commonly used in function signatures for several reasons:</p>
+<ul>
+<li>It's <strong>more general</strong>: it works with both arrays and vectors.</li>
+<li>It <strong>avoids ownership transfer</strong>: keeps our functions composable and efficient.</li>
+<li>It's <strong>idiomatic Rust</strong> and satisfies linters like Clippy.</li>
+</ul>
+<p>The only time we return a <code>Vec&lt;f64&gt;</code> is when we allocate a <strong>new output vector</strong>, like in <code>mul_scalar_vec</code>.</p>
+<h2 id="inlined-iterator-based-implementation"><a class="header" href="#inlined-iterator-based-implementation">Inlined iterator-based implementation</a></h2>
+<p>In this version, we present a <strong>more compact implementation</strong> of the Ridge regression loss function.</p>
+<p>Unlike the previous example where we broke the computation into multiple intermediate steps—like computing <code>y_hat</code>, <code>residuals</code>, and then squaring each residual—here we <strong>inline all computations</strong> into a single expression using iterators and closures.</p>
+<p>This is ideal for demonstrating the expressive power of Rust's iterator API, especially once you're comfortable with basic slice handling and <code>.map()</code> chaining.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn loss_function_inline(x: &amp;[f64], y: &amp;[f64], beta: f64, lambda2: f64) -&gt; f64 {
+    let n: usize = y.len();
+    let factor = 2.0 * n as f64;
+    let mean_squared_error = x
+        .iter()
+        .zip(y.iter())
+        .map(|(xi, yi)| {
+            let residual = yi - beta * xi;
+            residual * residual
+        })
+        .sum::&lt;f64&gt;()
+        / factor;
+    mean_squared_error + lambda2 * beta * beta
+}
+<span class="boring">}</span></code></pre></pre>
+<p>This implementation computes the mean squared error in a single iteration, minimizing allocations and abstraction overhead. In particular:</p>
+<ul>
+<li>We use <code>.iter().zip()</code> to iterate over two slices.</li>
+<li>We define a full code block inside the <code>.map()</code> closure, which makes it easier to write intermediate expressions like <code>let residual = yi - beta * xi;</code> before returning the squared value.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gradient-of-the-ridge-loss"><a class="header" href="#gradient-of-the-ridge-loss">Gradient of the Ridge loss</a></h1>
+<p>To perform optimization—such as gradient descent—we need the derivative of the loss function with respect to the model parameters. In the case of Ridge regression, the gradient has a closed-form expression and can be efficiently computed.</p>
+<p>In this section, we implement the gradient in two different ways to highlight trade-offs between clarity and performance.</p>
+<h2 id="naive-implementation-1"><a class="header" href="#naive-implementation-1">Naive implementation</a></h2>
+<p>This version breaks the computation into two separate steps:</p>
+<ul>
+<li>Compute the residuals $r_i := y_i - \beta x_i$</li>
+<li>Compute the dot product between the residuals and the inputs: $\sum_{i=1}^{n} r_i x_i$</li>
+<li>Then assemble the get the gradient value</li>
+</ul>
+<p>This is easier to follow and useful for educational purposes.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn grad_loss_function_naive(x: &amp;[f64], y: &amp;[f64], beta: f64, lambda2: f64) -&gt; f64 {
+    assert_eq!(x.len(), y.len(), "x and y must have the same length");
+
+    let n: usize = x.len();
+    let residuals: Vec&lt;f64&gt; = x
+        .iter()
+        .zip(y.iter())
+        .map(|(xi, yi)| yi - beta * xi)
+        .collect();
+
+    -dot(&amp;residuals, x) / (n as f64) + 2.0 * lambda2 * beta
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="inlined-iterator-based-implementation-1"><a class="header" href="#inlined-iterator-based-implementation-1">Inlined iterator-based implementation</a></h2>
+<p>In this version, we fuse the residual and gradient computation into a single iterator chain. This avoids intermediate memory allocations and takes full advantage of Rust’s zero-cost abstraction model.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn grad_loss_function_inline(x: &amp;[f64], y: &amp;[f64], beta: f64, lambda2: f64) -&gt; f64 {
+    assert_eq!(x.len(), y.len(), "x and y must have the same length");
+
+    let n: usize = x.len();
+    let grad_mse: f64 = x
+        .iter()
+        .zip(y.iter())
+        .map(|(xi, yi)| (yi - beta * xi) * xi)
+        .sum::&lt;f64&gt;()
+        / (n as f64);
+
+    -grad_mse + 2.0 * lambda2 * beta
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Key differences:</p>
+<ul>
+<li>The naive version allocates a temporary vector for the residuals and is closer to how you'd write this in a high-level math language like NumPy or MATLAB.</li>
+<li>The inlined version is more idiomatic Rust: it avoids allocation and achieves better performance through iterator fusion.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gradient-descent"><a class="header" href="#gradient-descent">Gradient Descent</a></h1>
+<p>We now implement the <strong>gradient descent algorithm</strong> to optimize the Ridge regression loss.</p>
+<p>Gradient descent iteratively updates the parameter <code>β</code> using the gradient of the loss function:</p>
+<p>$$
+\beta \leftarrow \beta - \eta \cdot \nabla_\beta \mathcal{L}(\beta)
+$$</p>
+<p>Where <code>η</code> is the learning rate, and <code>∇βL(β)</code> is the gradient of the loss.</p>
+<h2 id="full-implementation"><a class="header" href="#full-implementation">Full Implementation</a></h2>
+<p>We allow flexible experimentation by passing the gradient function as parameters:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub fn gradient_descent(
+    grad_fn: impl Fn(&amp;[f64], &amp;[f64], f64, f64) -&gt; f64,
+    x: &amp;[f64],
+    y: &amp;[f64],
+    lambda2: f64,
+    lr: f64,
+    n_iters: usize,
+    init_beta: f64,
+) -&gt; f64 {
+    let mut beta = init_beta;
+
+    for _ in 0..n_iters {
+        let grad = grad_fn(x, y, beta, lambda2);
+        beta -= lr * grad;
+    }
+
+    beta
+}
+<span class="boring">}</span></code></pre></pre>
+<p>This version is generic, letting us plug in any valid <code>grad_fn</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="putting-things-together"><a class="header" href="#putting-things-together">Putting things together</a></h1>
+<p>To wrap up our 1D Ridge Regression example, let's see how all the parts fit together into a real Rust crate.</p>
+<h2 id="project-layout"><a class="header" href="#project-layout">Project layout</a></h2>
+<p>Here’s the directory structure for our <code>ridge_regression_1d</code> crate:</p>
+<pre><code class="language-text">crates/ridge_regression_1d/
+├── Cargo.toml
+└── src
+    ├── grad_functions.rs      # Gradient of the loss
+    ├── lib.rs                 # Main entry point for the library
+    ├── loss_functions.rs      # Loss function implementations
+    ├── optimizer.rs           # Gradient descent
+    └── utils.rs               # Utility functions (e.g., dot product)
+</code></pre>
+<hr />
+<h2 id="whats-librs"><a class="header" href="#whats-librs">What's <code>lib.rs</code>?</a></h2>
+<p>The <code>lib.rs</code> file is the entry point for the crate as a <strong>library</strong>. This is where we declare which modules (i.e., other <code>.rs</code> files) are exposed to the outside world.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub mod grad_functions;
+pub mod loss_functions;
+pub mod optimizer;
+pub mod utils;
+<span class="boring">}</span></code></pre></pre>
+<p>Each line tells Rust:</p>
+<blockquote>
+<p>“There is a file called <code>X.rs</code> that defines a module <code>X</code>. Please include it in the crate.”</p>
+</blockquote>
+<p>By default, items inside a module are private. That’s where <code>pub</code> comes in.</p>
+<h2 id="why-pub"><a class="header" href="#why-pub">Why <code>pub</code>?</a></h2>
+<p>If you want to use a function from another module or crate, you must declare it <code>pub</code> (public). For example:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// In utils.rs
+pub fn dot(a: &amp;[f64], b: &amp;[f64]) -&gt; f64 { ... }
+<span class="boring">}</span></code></pre></pre>
+<p>If <code>dot</code> is not marked as <code>pub</code>, you can’t use it outside <code>utils.rs</code>, even from <code>optimizer.rs</code>.</p>
+<h2 id="importing-between-modules"><a class="header" href="#importing-between-modules">Importing between modules</a></h2>
+<p>Rust requires explicit imports between modules. For example, in <code>optimizer.rs</code>, we want to use the <code>dot</code> function from <code>utils.rs</code>:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use crate::utils::dot;
+<span class="boring">}</span></code></pre></pre>
+<p>Here, <code>crate</code> refers to the root of this library crate—<code>lib.rs</code>.</p>
+<h2 id="example-usage-in-mainrs"><a class="header" href="#example-usage-in-mainrs">Example usage in <code>main.rs</code></a></h2>
+<p>Now let's see how you could use the library from a binary crate:</p>
+<pre><pre class="playground"><code class="language-rust">use ridge_regression_1d::grad_functions::grad_loss_function_inline as grad_fn;
+use ridge_regression_1d::optimizer::gradient_descent;
+
+fn main() {
+    let x: Vec&lt;f64&gt; = vec![1.0, 2.0];
+    let y: Vec&lt;f64&gt; = vec![0.1, 0.2];
+
+    let lambda2 = 0.001;
+    let step_size = 0.1;
+    let n_iters = 100;
+    let init_beta = 0.5;
+
+    let beta = gradient_descent(grad_fn, &amp;x, &amp;y, lambda2, step_size, n_iters, init_beta);
+
+    println!("Learned beta: {beta}, true solution: 0.1!");
+}</code></pre></pre>
+<h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
+<p>This chapter demonstrated how to:</p>
+<ul>
+<li>Implement the 1D Ridge regression in sample ways by relying on Rust standard library only.</li>
+<li>Organize a crate into multiple source files (modules)</li>
+<li>Use <code>pub</code> to expose functions</li>
+<li>Import functions from other modules</li>
+<li>Call everything together from a <code>main.rs</code></li>
+</ul>
+<p>This is idiomatic Rust structure and prepares you to scale beyond toy examples while staying modular and readable.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="one-step-further-exposing-a-clean-api"><a class="header" href="#one-step-further-exposing-a-clean-api">One step further: Exposing a clean API</a></h1>
+<p>Until now, we've manually chained together the loss, gradient, and optimization steps. This is great for learning, but in real projects, we often want a simplified and reusable API.</p>
+<p>Rust gives us a clean way to do this by leveraging the <code>lib.rs</code> file as the public interface to our crate.</p>
+<h2 id="librs-as-a-public-api"><a class="header" href="#librs-as-a-public-api"><code>lib.rs</code> as a public API</a></h2>
+<p>In this crate, <code>lib.rs</code> is responsible for organizing and exposing the components we want users (or ourselves!) to interact with.</p>
+<p>We can re-export key functions and define top-level utilities like <code>fit</code> and <code>predict</code>. The complete <code>lib.rs</code> file now looks like this:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>/// This module exposes the main components of the Ridge Regression 1D crate.
+///
+/// It re-exports internal modules and defines high-level helper functions
+/// for training (`fit`) and predicting (`predict`) using Ridge regression.
+pub mod grad_functions;
+pub mod loss_functions;
+pub mod optimizer;
+pub mod utils;
+
+pub use grad_functions::grad_loss_function_inline;
+pub use optimizer::gradient_descent;
+
+/// Fits a Ridge regression model using gradient descent.
+///
+/// # Arguments
+///
+/// * `x` - Input features (`&amp;[f64]`)
+/// * `y` - Target values (`&amp;[f64]`)
+/// * `lambda2` - Regularization strength
+/// * `lr` - Learning rate
+/// * `n_iters` - Number of gradient descent iterations
+/// * `init_beta` - Initial value of the coefficient
+///
+/// # Returns
+///
+/// The optimized coefficient `beta` as `f64`.
+pub fn fit(x: &amp;[f64], y: &amp;[f64], lambda2: f64, lr: f64, n_iters: usize, init_beta: f64) -&gt; f64 {
+    gradient_descent(
+        grad_loss_function_inline,
+        x,
+        y,
+        lambda2,
+        lr,
+        n_iters,
+        init_beta,
+    )
+}
+
+/// Predicts output values using a trained Ridge regression coefficient.
+///
+/// # Arguments
+///
+/// * `x` - Input features (`&amp;[f64]`)
+/// * `beta` - Trained coefficient
+///
+/// # Returns
+///
+/// A `Vec&lt;f64&gt;` with predicted values.
+pub fn predict(x: &amp;[f64], beta: f64) -&gt; Vec&lt;f64&gt; {
+    x.iter().map(|xi| xi * beta).collect()
+}
+<span class="boring">}</span></code></pre></pre>
+<h2 id="example-of-usage"><a class="header" href="#example-of-usage">Example of usage</a></h2>
+<pre><pre class="playground"><code class="language-rust">use ridge_regression_1d::{fit, predict};
+
+fn main() {
+    let x = vec![1.0, 2.0, 3.0];
+    let y = vec![2.0, 4.0, 6.0];
+
+    let beta = fit(&amp;x, &amp;y, 0.1, 0.01, 1000, 0.0);
+    let preds = predict(&amp;x, beta);
+
+    println!("Learned beta: {}", beta);
+    println!("Predictions: {:?}", preds);
+}</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
