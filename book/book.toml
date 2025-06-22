@@ -1,0 +1,8 @@
+[book]
+authors = ["Brian Staber"]
+language = "en"
+src = "src"
+title = "Learn Rust with Applied Sciences"
+
+[preprocessor.katex]
+after = ["links"]
