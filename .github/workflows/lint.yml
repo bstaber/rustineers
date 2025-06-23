@@ -1,4 +1,4 @@
-name: Rust lint
+name: Rust Lint
 
 on:
   push:
@@ -8,22 +8,21 @@ on:
 
 jobs:
   lint:
-    name: Check formatting and clippy
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: actions/setup-rust@v1
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+          profile: minimal
           components: rustfmt, clippy
 
       - name: Install just
-        run: |
-          cargo install just
+        run: cargo install just
 
       - name: Run just lint
         run: just lint
