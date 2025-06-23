@@ -3,6 +3,8 @@ name: Deploy mdBook to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
@@ -31,6 +33,7 @@ jobs:
           path: book/book
 
   deploy:
+    if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
     environment:
