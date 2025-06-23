@@ -29,8 +29,9 @@ pub fn grad_loss_function_naive(x: &[f64], y: &[f64], beta: f64, lambda2: f64) -
         .zip(y.iter())
         .map(|(xi, yi)| yi - beta * xi)
         .collect();
+    let residuals_dot_x = dot(&residuals, x);
 
-    -dot(&residuals, x) / (n as f64) + 2.0 * lambda2 * beta
+    -residuals_dot_x / (n as f64) + 2.0 * lambda2 * beta
 }
 // ANCHOR_END: grad_loss_function_naive
 

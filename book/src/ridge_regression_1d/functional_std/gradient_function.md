@@ -11,7 +11,14 @@ This version breaks the computation into two separate steps:
 * Compute the dot product between the residuals and the inputs: $\sum_{i=1}^{n} r_i x_i$
 * Then assemble the get the gradient value
 
-This is easier to follow and useful for educational purposes.
+We first start by implementing our own `dot` function by relying on iterators, map chaining, and summing the results.
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/utils.rs:dot}}
+```
+
+Our first implementation takes the following form:
+
 
 ```rust
 {{#include ../../../../crates/ridge_regression_1d/src/grad_functions.rs:grad_loss_function_naive}}
@@ -25,5 +32,5 @@ In this version, we fuse the residual and gradient computation into a single ite
 ```
 
 Key differences:
-* The naive version allocates a temporary vector for the residuals and is closer to how you'd write this in a high-level math language like NumPy or MATLAB.
+* The naive version allocates a temporary vectosr for the residuals and the dot product.
 * The inlined version is more idiomatic Rust: it avoids allocation and achieves better performance through iterator fusion.
