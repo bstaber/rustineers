@@ -24,7 +24,7 @@ All the functions discussed in the previous sections are implemented in `loss_fu
 <summary>Click to view <b>loss_functions.rs</b></summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/loss_functions.rs}}
+{{#include ../../../../crates/ridge_regression_1d/src/functional_std/loss_functions.rs}}
 ```
 </details>
 
@@ -51,6 +51,8 @@ All the functions discussed in the previous sections are implemented in `loss_fu
 {{#include ../../../../crates/ridge_regression_1d/src/utils.rs}}
 ```
 </details>
+
+Note that the layout can be more complicated by introducing modules and submodules. This will be covered in the next chapter when we implement a structured-oriented version of the 1D Ridge regression.
 
 ## What's `lib.rs`?
 
