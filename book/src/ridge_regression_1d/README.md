@@ -19,3 +19,5 @@ This module is perfect if you're just starting with Rust and want to:
 - Learn good Rust patterns: immutability, iterators, ownership
 - How to make a simple crate out of it 
 - How to expose a public API
+
+If you want to implement and run this example while you read but are not familiar with Cargo yet, have a look at [Cargo 101](../CARGO_TUTORIAL.md) for how to set up your project.

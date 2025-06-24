@@ -1,4 +1,5 @@
 - [Introduction](INTRODUCTION.md)
+    - [Cargo 101](CARGO_TUTORIAL.md)
 
 - [1D Ridge regression](ridge_regression_1d/README.md)
     - [Functional · std only 🐙](templates/functional_std.md)
