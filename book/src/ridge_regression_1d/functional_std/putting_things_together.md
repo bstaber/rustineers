@@ -32,7 +32,7 @@ All the functions discussed in the previous sections are implemented in `loss_fu
 <summary>Click to view <b>grad_functions.rs</b></summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/grad_functions.rs}}
+{{#include ../../../../crates/ridge_regression_1d/src/functional_std/grad_functions.rs}}
 ```
 </details>
 
