@@ -6,7 +6,7 @@ Rust gives us a clean way to do this by leveraging the `lib.rs` file as the publ
 
 ## `lib.rs` as a public API
 
-In this crate, `lib.rs` is responsible for organizing and exposing the components we want users (or ourselves!) to interact with.
+In your crate, `lib.rs` is responsible for organizing and exposing the components we want users to interact with.
 
 We can re-export key functions and define top-level utilities like `fit` and `predict`. The complete `lib.rs` file now looks like this:
 
@@ -14,7 +14,11 @@ We can re-export key functions and define top-level utilities like `fit` and `pr
 {{#include ../../../../crates/ridge_regression_1d/src/lib.rs:exports_and_fit}}
 ```
 
+Everything declared `pub` is available to the user.
+
 ## Example of usage
+
+You can update your binary entry point to try out the public API.
 
 ```rust
 use ridge_regression_1d::{fit, predict};

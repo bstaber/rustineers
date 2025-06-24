@@ -13,11 +13,44 @@ crates/ridge_regression_1d/
     ├── grad_functions.rs      # Gradient of the loss
     ├── lib.rs                 # Main entry point for the library
     ├── loss_functions.rs      # Loss function implementations
+    ├── main.rs                # Binary entry point    
     ├── optimizer.rs           # Gradient descent
     └── utils.rs               # Utility functions (e.g., dot product)
 ```
 
----
+All the functions discussed in the previous sections are implemented in `loss_functions.rs`, `grad_functions.rs`, `utils.rs`, and `optimizer.rs`. You can inspect each of these files below.
+
+<details>
+<summary>Click to view <b>loss_functions.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/loss_functions.rs}}
+```
+</details>
+
+<details>
+<summary>Click to view <b>grad_functions.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/grad_functions.rs}}
+```
+</details>
+
+<details>
+<summary>Click to view <b>optimizer.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/optimizer.rs}}
+```
+</details>
+
+<details>
+<summary>Click to view <b>utils.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/utils.rs}}
+```
+</details>
 
 ## What's `lib.rs`?
 
@@ -35,6 +68,8 @@ Each line tells Rust:
 > “There is a file called `X.rs` that defines a module `X`. Please include it in the crate.”
 
 By default, items inside a module are private. That’s where `pub` comes in.
+
+We will dive deeper into `lib.rs` in the [2.1.5 Exposing API](exposing_api.md) chapter.
 
 
 ## Why `pub`?
@@ -56,16 +91,18 @@ Rust requires explicit imports between modules. For example, in `optimizer.rs`, 
 use crate::utils::dot;
 ```
 
-Here, `crate` refers to the root of this library crate—`lib.rs`.
+Here, `crate` refers to the root of this library crate `lib.rs`. If you check out one of the modules again (e.g., `loss_functions.rs`), you'll notice that's exactly what we are doing to import functions from other modules.
 
 
-## Example usage in `main.rs`
+## Example of usage in `main.rs`
 
 Now let's see how you could use the library from a binary crate:
 
 ```rust
 {{#include ../../../../crates/ridge_regression_1d/src/main.rs}}
 ```
+
+You can run this with `cargo run`.
 
 ## Summary
 
