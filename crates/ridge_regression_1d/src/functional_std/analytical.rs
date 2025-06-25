@@ -28,7 +28,7 @@ pub fn ridge_estimator(x: &[f64], y: &[f64], lambda2: f64) -> f64 {
         .map(|(xi, yi)| (xi - x_mean) * (yi - y_mean))
         .sum::<f64>();
 
-    let denom: f64 = x.iter().map(|xi| (xi - x_mean).powi(2)).sum::<f64>() + lambda2;
+    let denom: f64 = x.iter().map(|xi| (xi - x_mean).powi(2)).sum::<f64>() + lambda2 * (n as f64);
 
     num / denom
 }
