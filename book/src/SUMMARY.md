@@ -4,7 +4,7 @@
 - [1D Ridge regression](ridge_regression_1d/README.md)
     - [Functional · std only 🐙](templates/functional_std.md)
         - [Loss function](ridge_regression_1d/functional_std/loss_function.md)
-        - [Gradient function](ridge_regression_1d/functional_std/gradient_function.md)
+        - [Closed-form solution](ridge_regression_1d/functional_std/closed_form_solution.md)
         - [Gradient descent](ridge_regression_1d/functional_std/gradient_descent.md)
         - [Putting things together](ridge_regression_1d/functional_std/putting_things_together.md)
         - [Exposing API](ridge_regression_1d/functional_std/exposing_api.md)
