@@ -1,6 +1,8 @@
 # Ridge loss
 
-In this example, we implement **one-dimensional Ridge Regression loss** using only the **Rust standard library**, without any external crates. This lets us focus on core Rust features such as slices, iterators, and type safety.
+In this example, we implement one-dimensional Ridge Regression loss using only the **Rust standard library**, without any external crates. This lets us focus on core Rust features such as slices, iterators, and type safety.
+
+Although the loss function by itself isn't really useful to solve the Ridge problem, implementing it provides a simple and focused introduction to Rust.
 
 ## Naive implementation
 

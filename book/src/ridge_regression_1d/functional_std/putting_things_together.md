@@ -10,6 +10,7 @@ Here’s the directory structure for our `ridge_regression_1d` crate:
 crates/ridge_regression_1d/
 ├── Cargo.toml
 └── src
+    ├── analytical.rs          # Closed-form solution of the Ridge estimator
     ├── grad_functions.rs      # Gradient of the loss
     ├── lib.rs                 # Main entry point for the library
     ├── loss_functions.rs      # Loss function implementations
@@ -18,7 +19,15 @@ crates/ridge_regression_1d/
     └── utils.rs               # Utility functions (e.g., dot product)
 ```
 
-All the functions discussed in the previous sections are implemented in `loss_functions.rs`, `grad_functions.rs`, `utils.rs`, and `optimizer.rs`. You can inspect each of these files below.
+All the functions discussed in the previous sections are implemented in `analytical.rs`, `loss_functions.rs`, `grad_functions.rs`, `utils.rs`, and `optimizer.rs`. You can inspect each of these files below.
+
+<details>
+<summary>Click to view <b>analytical.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/functional_std/analytical.rs}}
+```
+</details>
 
 <details>
 <summary>Click to view <b>loss_functions.rs</b></summary>
