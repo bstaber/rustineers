@@ -3,7 +3,7 @@
 Here, we implement one-dimensional Ridge Regression*in several styles, using increasing levels of abstraction. It's designed as a learning path for beginners, and focuses on writing idiomatic, clear, and type-safe Rust code. We focus on minimizing this loss function:
 
 $$
-\mathcal{L}(\beta) = \frac{1}{2n} \sum_{i=1}^n (y_i - \beta x_i)^2 + \lambda \beta^2\,,
+\mathcal{L}(\beta) = \frac{1}{n} \sum_{i=1}^n (y_i - \beta x_i)^2 + \lambda \beta^2\,,
 $$
 
 where: $x_i \in \mathbb{R}$ is an input covariate, $y_i \in \mathbb{R}$ is the associated output, $\beta$ is the Ridge coefficient, $\lambda$ is the $L^2$ regularization strength.

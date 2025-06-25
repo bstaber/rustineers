@@ -1,9 +1,6 @@
 # Gradient descent
 
-As an exercise, we now implement the gradient descent algorithm to optimize the Ridge regression loss. 
-
-In the case of Ridge regression, the gradient has a closed-form expression and can be efficiently computed. We implement the gradient in two different ways as we did for the loss function.
-
+As an exercise, we now implement the gradient descent algorithm to optimize the Ridge regression loss. The gradient has a closed-form expression and can be efficiently computed. We implement it in two different ways as we did for the loss function.
 ## Gradient descent implementation
 
 Gradient descent iteratively updates the parameter `β` using the gradient of the loss function:

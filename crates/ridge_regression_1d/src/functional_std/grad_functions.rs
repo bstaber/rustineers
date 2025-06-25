@@ -31,7 +31,7 @@ pub fn grad_loss_function_naive(x: &[f64], y: &[f64], beta: f64, lambda2: f64) -
         .collect();
     let residuals_dot_x = dot(&residuals, x);
 
-    -residuals_dot_x / (n as f64) + 2.0 * lambda2 * beta
+    -2.0 * residuals_dot_x / (n as f64) + 2.0 * lambda2 * beta
 }
 // ANCHOR_END: grad_loss_function_naive
 
@@ -62,7 +62,7 @@ pub fn grad_loss_function_inline(x: &[f64], y: &[f64], beta: f64, lambda2: f64) 
     let grad_mse: f64 = x
         .iter()
         .zip(y.iter())
-        .map(|(xi, yi)| (yi - beta * xi) * xi)
+        .map(|(xi, yi)| 2.0 * (yi - beta * xi) * xi)
         .sum::<f64>()
         / (n as f64);
 
