@@ -9,4 +9,7 @@
         - [Putting things together](ridge_regression_1d/functional_std/putting_things_together.md)
         - [Exposing API](ridge_regression_1d/functional_std/exposing_api.md)
     - [Structured · std only 🦀](templates/structured_std.md)
+        - [Closed-form solution](ridge_regression_1d/structured_std/closed_form_solution.md)
+        - [Gradient descent](ridge_regression_1d/structured_std/gradient_descent.md)
+        - [Trait Ridge model](ridge_regression_1d/structured_std/traits.md)
     - [Fun/Struct · ndarray 🧩](templates/idiomatic_ndarray.md)
