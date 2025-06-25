@@ -56,6 +56,12 @@ impl RidgeModel for RidgeGradientDescent {
     }
 }
 
+impl RidgeEstimator {
+    pub fn new(init_beta: f64) -> Self {
+        Self { beta: init_beta }
+    }
+}
+
 impl RidgeModel for RidgeEstimator {
     fn fit(&mut self, x: &[f64], y: &[f64], lambda2: f64) {
         let n: usize = x.len();
