@@ -63,5 +63,5 @@ pub fn run_demo() {
     let preds = predict(&x, beta);
 
     println!("Learned beta: {beta}, true solution: 0.1!");
-    println!("Predictions: {:?}", preds);
+    println!("Predictions: {preds:?}");
 }
