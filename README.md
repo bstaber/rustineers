@@ -1,6 +1,6 @@
 # Learn Rust with Applied Sciences
 
-Welcome to **Rustineers**, a hands-on guide to learning the Rust programming language through practical problems in applied sciences. The name _Rustineers_ is a blend of Rust and engineers.
+Welcome to Rustineers, a hands-on guide to learning the Rust programming language through practical problems in applied sciences. The name _Rustineers_ is a blend of Rust and engineers.
 
 If you enjoy learning a programming language by implementing common algorithms yourself — especially in applied mathematics and scientific computing — then you're in the right place.
 
