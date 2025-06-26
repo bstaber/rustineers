@@ -8,5 +8,8 @@ members = [
     "crates/ridge_regression_1d",
 ]
 
+[workspace.dependencies]
+num-traits = "0.2"
+
 [dependencies]
 ridge_regression_1d = { path = "crates/ridge_regression_1d" }

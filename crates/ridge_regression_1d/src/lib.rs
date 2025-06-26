@@ -4,6 +4,7 @@
 /// for training (`fit`) and predicting (`predict`) using Ridge regression.
 pub mod functional_std;
 pub mod optimizer;
+pub mod structured_std;
 pub mod utils;
 
 pub use functional_std::grad_functions::grad_loss_function_inline;

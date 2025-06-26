@@ -48,7 +48,7 @@ pub fn loss_function_naive(x: &[f64], y: &[f64], beta: f64, lambda2: f64) -> f64
     let n: usize = x.len();
     let y_hat: Vec<f64> = mul_scalar_vec(beta, x);
     let residuals: Vec<f64> = subtract_vectors(y, &y_hat);
-    let mse: f64 = residuals.iter().map(|x| x * x).sum::<f64>() / (2.0 * n as f64);
+    let mse: f64 = residuals.iter().map(|x| x * x).sum::<f64>() / (n as f64);
     mse + lambda2 * beta * beta
 }
 // ANCHOR_END: loss_function_naive
@@ -70,7 +70,7 @@ pub fn loss_function_naive(x: &[f64], y: &[f64], beta: f64, lambda2: f64) -> f64
 // ANCHOR: loss_function_line
 pub fn loss_function_inline(x: &[f64], y: &[f64], beta: f64, lambda2: f64) -> f64 {
     let n: usize = y.len();
-    let factor = 2.0 * n as f64;
+    let factor = n as f64;
     let mean_squared_error = x
         .iter()
         .zip(y.iter())
