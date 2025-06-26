@@ -1,5 +1,7 @@
 # Gradient descent
 
+As an another illustration of `struct` and `impl`, let's tackle the gradient descent method for the Ridge regression again. We use the following structure:
+
 ```rust
 pub struct RidgeGradientDescent {
     beta: f64,
@@ -7,6 +9,8 @@ pub struct RidgeGradientDescent {
     lr: f64,
 }
 ```
+
+This struct stores the current coefficient $\beta$, the number of iterations to run, and the learning rate. We can subsequently implement the constructor and all the methods required to perform gradient descent.
 
 ```rust
 impl RidgeGradientDescent {
@@ -44,5 +48,22 @@ impl RidgeGradientDescent {
     fn predict(&self, x: &[f64]) -> Vec<f64> {
         x.iter().map(|xi| self.beta * xi).collect()
     }
+}
+```
+
+## Example of usage
+
+Here is how we can use our new Ridge estimator:
+
+```rust
+fn main() {
+    let x = vec![1.0, 2.0, 3.0, 4.0];
+    let y = vec![2.1, 4.1, 6.2, 8.3];
+
+    let mut model = RidgeGradientDescent::new(1000, 0.01, 0.0);
+    model.fit(&x, &y, 0.1);
+
+    let predictions = model.predict(&x);
+    println!("Predictions: {:?}", predictions);
 }
 ```

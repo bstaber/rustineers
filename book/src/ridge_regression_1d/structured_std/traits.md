@@ -1,5 +1,9 @@
 # Base Ridge model using traits
 
+We implement two different Ridge estimators in the previous sections. While these implementations solve the same problem, their fit logic is different. To unify their interface and promote code reuse, we can leverage Rust's trait mechanism.
+
+We define a common trait `RidgeModel`, which describes the shared behavior of any Ridge estimator:
+
 ```rust
 pub trait RidgeModel {
     fn fit(&mut self, x: &[f64], y: &[f64], lambda2: f64);
@@ -7,7 +11,19 @@ pub trait RidgeModel {
 }
 ```
 
---
+Any type that implements this trait must provide a fit method to train the model and a predict method to make predictions. 
+
+Both implementations use the same logic to produce predictions from a scalar $\beta$. We can move this logic to a shared helper function:
+
+```rust
+fn predict_from_beta(beta: f64, x: &[f64]) -> Vec<f64> {
+    x.iter().map(|xi| beta * xi).collect()
+}
+```
+
+## Trait implementation: gradient descent method
+
+Recall that our `RidgeGradientDescent` type is defined as follows:
 
 ```rust
 pub struct RidgeGradientDescent {
@@ -15,7 +31,11 @@ pub struct RidgeGradientDescent {
     n_iters: usize,
     lr: f64,
 }
+```
 
+We still need to define the constructor and the gradient function:
+
+```rust
 impl RidgeGradientDescent {
     pub fn new(n_iters: usize, lr: f64, init_beta: f64) -> Self {
         Self {
@@ -41,7 +61,11 @@ impl RidgeGradientDescent {
         -grad_mse + 2.0 * lambda2 * self.beta
     }
 }
+```
 
+Once this is done, we need to implement the required methods to be a `RidgeModel`:
+
+```rust
 impl RidgeModel for RidgeGradientDescent {
     fn fit(&mut self, x: &[f64], y: &[f64], lambda2: f64) {
         for _ in 0..self.n_iters {
@@ -56,7 +80,9 @@ impl RidgeModel for RidgeGradientDescent {
 }
 ```
 
--- 
+## Trait implementation: closed-form estimator
+
+We do the same for the `RidgeEstimator` that uses the analytical formula:
 
 ```rust
 pub struct RidgeEstimator {
@@ -94,3 +120,5 @@ impl RidgeModel for RidgeEstimator {
     }
 }
 ```
+
+That's it ! The usage remains the same but we slighly refactored our code.
