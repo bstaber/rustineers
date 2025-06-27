@@ -12,4 +12,5 @@
         - [Closed-form solution](ridge_regression_1d/structured_std/closed_form_solution.md)
         - [Gradient descent](ridge_regression_1d/structured_std/gradient_descent.md)
         - [Trait Ridge model](ridge_regression_1d/structured_std/traits.md)
-    - [Generics - std only]()
+    - [Generics - std only](ridge_regression_1d/generics_std/README.md)
+        - [Closed-form solution](ridge_regression_1d/generics_std/closed_form_solution.md)
