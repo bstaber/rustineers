@@ -3,6 +3,7 @@
 /// It re-exports internal modules and defines high-level helper functions
 /// for training (`fit`) and predicting (`predict`) using Ridge regression.
 pub mod functional_std;
+pub mod generics_std;
 pub mod optimizer;
 pub mod structured_std;
 pub mod utils;
