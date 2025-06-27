@@ -19,7 +19,7 @@ This book is meant to be complementary to those great resources. Our goal is to 
 
 Each chapter centers around a specific scientific algorithm or computational problem. We explore how to implement it idiomatically in Rust—sometimes in multiple styles.
 
-## 🦀 Difficulty Levels
+## Difficulty Levels
 
 To help you navigate the material, each chapter is marked with a difficulty level using 🦀 emojis:
 
@@ -28,3 +28,43 @@ To help you navigate the material, each chapter is marked with a difficulty leve
 - 🦀🦀🦀 — Advanced
 
 As this is a work in progress, the difficulty levels might not always be well chosen.
+
+## Roadmap
+
+Here's an unordered list of examples of applications that could be added to the book:
+
+- **Statistics & Probability**
+  - Mean, variance, and standard deviation
+  - Random sampling with `rand` and `rand_distr`
+  - Basic probability distributions (Gaussian, Bernoulli)
+  - Monte Carlo integration
+
+- **Regression & Optimization**
+  - Ridge Regression with `ndarray`
+  - Multivariate Ridge Regression
+  - Lasso regression (proximal gradient)
+  - Gradient descent in 1D
+  - Multivariate optimization
+  - Constrained optimization (e.g., Lagrange multipliers)
+  - Projected gradient methods
+
+- **Machine Learning**
+  - Logistic regression
+  - K-means clustering
+  - Simple neural networks (from scratch)
+
+- **Bayesian Inference & MCMC**
+  - Random number engines and reproducibility
+  - Langevin Monte Carlo (LMC)
+  - Metropolis-adjusted Langevin (MALA)
+  - Hamiltonian Monte Carlo
+
+- **Differential Equations**
+  - Euler’s method
+  - Runge-Kutta 4
+  - Systems of ODEs
+  - 1D Heat Equation (finite difference)
+  - 2D Poisson Equation
+  - Sparse matrices and solvers
+
+Let us know if you have other ideas.
