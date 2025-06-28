@@ -5,6 +5,7 @@ edition = "2024"
 
 [workspace]
 members = [
+    "crates/simple_optimizers",
     "crates/ridge_regression_1d",
 ]
 
@@ -13,3 +14,4 @@ num-traits = "0.2"
 
 [dependencies]
 ridge_regression_1d = { path = "crates/ridge_regression_1d" }
+simple_optimizers = { path = "crates/simple_optimizers" }
