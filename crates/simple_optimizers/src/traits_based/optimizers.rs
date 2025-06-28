@@ -1,6 +1,6 @@
 // ANCHOR: optimizer_trait
 pub trait Optimizer {
-    fn update(&mut self, weights: &mut [f64], grads: &[f64]);
+    fn step(&mut self, weights: &mut [f64], grads: &[f64]);
 }
 // ANCHOR_END: optimizer_trait
 
@@ -19,15 +19,15 @@ impl GradientDescent {
 
 // ANCHOR_END: impl_optimizer_gd
 
-// ANCHOR: impl_optimizer_gd_update
+// ANCHOR: impl_optimizer_gd_step
 impl Optimizer for GradientDescent {
-    fn update(&mut self, weights: &mut [f64], grads: &[f64]) {
+    fn step(&mut self, weights: &mut [f64], grads: &[f64]) {
         for (w, g) in weights.iter_mut().zip(grads.iter()) {
             *w -= self.learning_rate * g;
         }
     }
 }
-// ANCHOR_END: impl_optimizer_gd_update
+// ANCHOR_END: impl_optimizer_gd_step
 
 // ANCHOR: momentum_struct
 pub struct Momentum {
@@ -49,9 +49,9 @@ impl Momentum {
 }
 // ANCHOR_END: impl_optimizer_momentum
 
-// ANCHOR: impl_optimizer_momentum_update
+// ANCHOR: impl_optimizer_momentum_step
 impl Optimizer for Momentum {
-    fn update(&mut self, weights: &mut [f64], grads: &[f64]) {
+    fn step(&mut self, weights: &mut [f64], grads: &[f64]) {
         for ((w, g), v) in weights
             .iter_mut()
             .zip(grads.iter())
@@ -62,4 +62,4 @@ impl Optimizer for Momentum {
         }
     }
 }
-// ANCHOR_END: impl_optimizer_momentum_update
+// ANCHOR_END: impl_optimizer_momentum_step
