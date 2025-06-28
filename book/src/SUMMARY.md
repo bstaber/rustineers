@@ -14,3 +14,8 @@
         - [Trait Ridge model](ridge_regression_1d/structured_std/traits.md)
     - [Generics - std only](ridge_regression_1d/generics_std/README.md)
         - [Closed-form solution](ridge_regression_1d/generics_std/closed_form_solution.md)
+    - [Using ndarray]()
+- [Simple optimizers 🦀🦀](simple_optimizers/README.md)
+    - [Trait-based · std only](simple_optimizers/traits_based_implementation.md)
+    - [Enum-based · std only]()
+    - [Using ndarray]()

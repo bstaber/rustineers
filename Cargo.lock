@@ -29,4 +29,9 @@ name = "rustineers"
 version = "0.1.0"
 dependencies = [
  "ridge_regression_1d",
+ "simple_optimizers",
 ]
+
+[[package]]
+name = "simple_optimizers"
+version = "0.1.0"
