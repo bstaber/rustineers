@@ -1,5 +1,5 @@
 
-# Chapter: Generic types and trait bounds in Rust
+# Closed-form estimator with generic types and trait bounds
 
 ## What are generics?
 
