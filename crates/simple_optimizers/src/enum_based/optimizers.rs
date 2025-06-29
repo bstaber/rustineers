@@ -1,3 +1,4 @@
+// ANCHOR: enum_definition
 #[derive(Debug, Clone)]
 pub enum Optimizer {
     GradientDescent {
@@ -9,7 +10,9 @@ pub enum Optimizer {
         velocity: Vec<f64>,
     },
 }
+// ANCHOR_END: enum_definition
 
+// ANCHOR: constructors
 impl Optimizer {
     pub fn gradient_descent(learning_rate: f64) -> Self {
         Self::GradientDescent { learning_rate }
@@ -23,7 +26,9 @@ impl Optimizer {
         }
     }
 }
+// ANCHOR_END: constructors
 
+// ANCHOR: step
 impl Optimizer {
     pub fn step(&mut self, weights: &mut [f64], grads: &[f64]) {
         match self {
@@ -49,7 +54,9 @@ impl Optimizer {
         }
     }
 }
+// ANCHOR_END: step
 
+// ANCHOR: tests
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -111,3 +118,4 @@ mod tests {
         );
     }
 }
+// ANCHOR_END: tests
