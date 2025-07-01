@@ -5,6 +5,7 @@
 pub mod functional_std;
 pub mod generics_std;
 pub mod optimizer;
+pub mod structured_ndarray;
 pub mod structured_std;
 pub mod utils;
 
