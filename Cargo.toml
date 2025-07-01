@@ -11,6 +11,7 @@ members = [
 
 [workspace.dependencies]
 num-traits = "0.2"
+ndarray = "0.16.1"
 
 [dependencies]
 ridge_regression_1d = { path = "crates/ridge_regression_1d" }

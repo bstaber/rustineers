@@ -23,15 +23,15 @@ struct RidgeEstimator<F> {
 
 Here, `F` is a type parameter — it could be `f32`, `f64`, or another type. In Rust, generic types have no behavior by default.
 
-For example:
-
+~~~admonish bug
 ```rust
 fn sum(xs: &[F]) -> F {
     xs.iter().sum() // This will not compile
 }
 ```
 
-The compiler gives an error: “`F` might not implement `Sum`, so I don’t know how to `.sum()` over it.”
+The compiler gives an error: "`F` might not implement `Sum`, so I don’t know how to `.sum()` over it."
+~~~
 
 ## Trait bounds
 
