@@ -24,6 +24,9 @@ jobs:
       - name: Install mdBook-katex
         run: cargo install mdbook-katex
 
+      - name: Install mdBook-admonish
+        run: cargo install mdbook-admonish && mdbook-admonish install
+
       - name: Build the book
         run: cd book && mdbook build
 
