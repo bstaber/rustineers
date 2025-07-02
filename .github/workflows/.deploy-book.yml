@@ -24,8 +24,11 @@ jobs:
       - name: Install mdBook-katex
         run: cargo install mdbook-katex
 
+      - name: Install mdBook-admonish
+        run: cargo install mdbook-admonish
+
       - name: Build the book
-        run: cd book && mdbook build
+        run: cd book && mdbook-admonish install && mdbook build
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
