@@ -1,4 +1,5 @@
-# Learn Rust with Applied Sciences
+# Learn Rust with Applied Sciences [![Contribute](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+
 
 Welcome to Rustineers, a hands-on guide to learning the Rust programming language through practical problems in applied sciences. The name _Rustineers_ is a blend of Rust and engineers.
 
