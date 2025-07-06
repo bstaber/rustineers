@@ -1,9 +1,12 @@
 // ANCHOR: enum_definition
+/// An enum representing different optimizers with built-in state and update rules.
+///
+/// Supports both gradient descent and momentum-based methods.
 #[derive(Debug, Clone)]
 pub enum Optimizer {
-    GradientDescent {
-        learning_rate: f64,
-    },
+    /// Gradient Descent optimizer with a fixed learning rate.
+    GradientDescent { learning_rate: f64 },
+    /// Momentum-based optimizer with velocity tracking.
     Momentum {
         learning_rate: f64,
         momentum: f64,
@@ -14,10 +17,20 @@ pub enum Optimizer {
 
 // ANCHOR: constructors
 impl Optimizer {
+    /// Creates a new Gradient Descent optimizer.
+    ///
+    /// # Arguments
+    /// - `learning_rate`: Step size for the parameter updates.
     pub fn gradient_descent(learning_rate: f64) -> Self {
         Self::GradientDescent { learning_rate }
     }
 
+    /// Creates a new Momentum optimizer.
+    ///
+    /// # Arguments
+    /// - `learning_rate`: Step size for the updates.
+    /// - `momentum`: Momentum coefficient.
+    /// - `dim`: Number of parameters (used to initialize velocity vector).
     pub fn momentum(learning_rate: f64, momentum: f64, dim: usize) -> Self {
         Self::Momentum {
             learning_rate,
@@ -30,6 +43,11 @@ impl Optimizer {
 
 // ANCHOR: step
 impl Optimizer {
+    /// Applies a single optimization step, depending on the variant.
+    ///
+    /// # Arguments
+    /// - `weights`: Mutable slice of model parameters to be updated.
+    /// - `grads`: Gradient slice with same shape as `weights`.
     pub fn step(&mut self, weights: &mut [f64], grads: &[f64]) {
         match self {
             Optimizer::GradientDescent { learning_rate } => {
