@@ -19,4 +19,4 @@
     - [Trait-based](simple_optimizers/traits_based_implementation.md)
     - [Enum-based](simple_optimizers/enum_based_implementation.md)
     - [Adding tests](simple_optimizers/tests.md)
-    - [Using ndarray]()
+    - [Using ndarray](simple_optimizers/ndarray_based_implementation.md)

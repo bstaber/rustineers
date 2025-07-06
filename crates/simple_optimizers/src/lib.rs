@@ -1,4 +1,5 @@
 pub mod enum_based;
+pub mod traits_and_ndarray;
 pub mod traits_based;
 use traits_based::optimizers::Optimizer;
 
