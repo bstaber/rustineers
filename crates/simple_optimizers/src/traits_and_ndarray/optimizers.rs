@@ -9,7 +9,7 @@ use ndarray::Zip;
 // ANCHOR: trait
 pub trait Optimizer {
     fn run(
-        &mut self,
+        &self,
         weights: &mut Array1<f64>,
         grad_fn: impl Fn(&Array1<f64>) -> Array1<f64>,
         n_steps: usize,
@@ -45,14 +45,14 @@ impl GD {
 // ANCHOR: impl_gd_run
 impl Optimizer for GD {
     fn run(
-        &mut self,
+        &self,
         weights: &mut Array1<f64>,
         grad_fn: impl Fn(&Array1<f64>) -> Array1<f64>,
         n_steps: usize,
     ) {
         for _ in 0..n_steps {
             let grads = grad_fn(weights);
-            weights.zip_mut_with(&grads, |w, g| {
+            weights.zip_mut_with(&grads, |w, &g| {
                 *w -= self.step_size * g;
             });
         }
@@ -97,7 +97,7 @@ impl AGD {
 // ANCHOR: impl_agd_run
 impl Optimizer for AGD {
     fn run(
-        &mut self,
+        &self,
         weights: &mut Array1<f64>,
         grad_fn: impl Fn(&Array1<f64>) -> Array1<f64>,
         n_steps: usize,
@@ -163,7 +163,7 @@ impl Optimizer for AdaptiveAGD {
     /// x_{k+1} = y_{k+1} + ((t_k - 1)/t_{k+1}) * (y_{k+1} - y_k)
     /// ```
     fn run(
-        &mut self,
+        &self,
         weights: &mut Array1<f64>,
         grad_fn: impl Fn(&Array1<f64>) -> Array1<f64>,
         n_steps: usize,
