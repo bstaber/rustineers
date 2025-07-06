@@ -5,6 +5,7 @@ Welcome to Rustineers, a dive into the Rust programming language through the len
 - [The Book](https://doc.rust-lang.org/book/) – a comprehensive introduction to Rust.
 - [Rustlings](https://github.com/rust-lang/rustlings/) – hands-on exercises to reinforce learning.
 - [Rust by Example](https://doc.rust-lang.org/rust-by-example/) – learn by studying runnable examples.
+- [Rust Language Cheat Sheet](https://cheats.rs/) - really useful when you're trying to remember something without asking your favorite LLM. 
 
 You can find even more learning material at [rust-lang.org](https://www.rust-lang.org/).
 
@@ -17,7 +18,17 @@ This book is meant to be complementary to those great resources. Our goal is to 
 - Partial Differential Equations (PDEs)  
 - And other topics from engineering and physics  
 
-Each chapter centers around a specific scientific algorithm or computational problem. We explore how to implement it idiomatically in Rust—sometimes in multiple styles.
+Each chapter centers around a specific scientific algorithm or computational problem. We explore how to implement it idiomatically in Rust and sometimes in multiple styles.
+
+Hopefully, we manage to go through the [core concepts of Rust](https://youtu.be/06CVZKbNvgE?list=PLLWK4pUHYDYSnFTR7PPPAN1YtDgbP9h_z), namely:
+- Ownership / borrowing
+- Data types
+- Traits
+- Modules
+- Error handling
+- Macros
+
+Most examples being with [Rust's standard library](https://doc.rust-lang.org/std/) which seems to be a solid foundation for learning both the language and its ecosystem.
 
 ## Difficulty Levels
 
