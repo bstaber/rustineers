@@ -9,7 +9,7 @@ use std::error::Error;
 // ANCHOR: struct
 #[derive(Debug, Clone, Default)]
 pub struct RidgeEstimator {
-    beta: Option<f64>,
+    pub beta: Option<f64>,
 }
 // ANCHOR_END: struct
 
