@@ -14,9 +14,9 @@ pub fn run_demo() {
 
     model.fit(&x, &y, lambda2);
     let preds = model.predict(&x);
-    
+
     match model.beta {
-        Some(beta) => println!("Learned beta: {}, true solution: 0.1!", beta),
+        Some(beta) => println!("Learned beta: {beta}, true solution: 0.1!"),
         None => println!("Model not fitted!"),
     }
     println!("Predictions: {preds:?}");
