@@ -29,7 +29,7 @@ pub struct RidgeGradientDescent {
 /// Computes `beta` directly from the input data using the analytical solution.
 // ANCHOR: struct_ridge_closedform
 pub struct RidgeEstimator {
-    beta: f64,
+    pub beta: f64,
 }
 // ANCHOR_END: struct_ridge_closedform
 

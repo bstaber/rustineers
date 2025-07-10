@@ -20,7 +20,7 @@ pub trait RidgeModel<F: Float + Sum> {
 /// and performs scalar Ridge regression (1D).
 // ANCHOR: gen_ridge_estimator
 pub struct GenRidgeEstimator<F: Float + Sum> {
-    beta: F,
+    pub beta: F,
 }
 // ANCHOR_END: gen_ridge_estimator
 

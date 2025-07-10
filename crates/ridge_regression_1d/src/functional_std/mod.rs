@@ -50,6 +50,8 @@ pub fn predict(x: &[f64], beta: f64) -> Vec<f64> {
 }
 
 pub fn run_demo() {
+    println!("-----------------------------------------------------");
+    println!("Running ridge_regression_1d::functional_std::run_demo");
     let x: Vec<f64> = vec![1.0, 2.0];
     let y: Vec<f64> = vec![0.1, 0.2];
 
@@ -63,4 +65,5 @@ pub fn run_demo() {
 
     println!("Learned beta: {beta}, true solution: 0.1!");
     println!("Predictions: {preds:?}");
+    println!("-----------------------------------------------------");
 }
