@@ -32,3 +32,19 @@ pub fn ridge_estimator(x: &[f64], y: &[f64], lambda2: f64) -> f64 {
 
     num / denom
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ridge_estimator() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let true_beta: f64 = 0.1;
+        let lambda2: f64 = 0.0;
+        
+        let beta_estimate: f64 = ridge_estimator(&x, &y, lambda2);
+        assert!((true_beta - beta_estimate).abs() < 1e-6, "Estimate {} not close enough to true solution {}", beta_estimate, true_beta);
+    }
+}
