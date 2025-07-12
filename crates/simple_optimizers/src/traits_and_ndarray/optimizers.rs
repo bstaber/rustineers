@@ -155,11 +155,11 @@ impl AdaptiveAGD {
 ///
 /// This implementation follows:
 ///
-/// ```
+///
 /// y_{k+1} = x_k - α ∇f(x_k)
 /// t_{k+1} = (1 + sqrt(1 + 4 t_k²)) / 2
 /// x_{k+1} = y_{k+1} + ((t_k - 1)/t_{k+1}) * (y_{k+1} - y_k)
-/// ```
+///
 // ANCHOR: AdaptiveAGD_impl_run
 impl Optimizer for AdaptiveAGD {
     fn run(
