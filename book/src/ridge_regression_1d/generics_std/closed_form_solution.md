@@ -1,79 +1,48 @@
+# Generic Ridge estimator
 
-# Closed-form estimator with generic types and trait bounds
+In this section, we implement a Ridge estimator that works with `f32` and `f64` using generics and trait bounds.
 
-## What are generics?
-
-Generics let you write code that works with many types, not just one.
-
-Instead of writing:
+To make this work, we need to import the following:
 
 ```rust
-struct RidgeEstimator {
-    beta: f64,
-}
+use num_traits::Float;
+use std::iter::Sum;
 ```
 
-You can write:
+## Ridge model trait
+
+We start by defining a trait, `RidgeModel`, that describes the core behavior expected from any Ridge regression model. We tell the compiler that `F` must implement the traits `Float` and `Sum`.
 
 ```rust
-struct RidgeEstimator<F> {
-    beta: F,
-}
+{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:ridge_model_trait}}
 ```
 
-Here, `F` is a type parameter — it could be `f32`, `f64`, or another type. In Rust, generic types have no behavior by default.
+## Ridge estimator structure
 
-~~~admonish bug
-```rust
-fn sum(xs: &[F]) -> F {
-    xs.iter().sum() // This will not compile
-}
-```
-
-The compiler gives an error: "`F` might not implement `Sum`, so I don’t know how to `.sum()` over it."
-~~~
-
-## Trait bounds
-
-To fix that, we must tell the compiler which traits `F` should implement.
-
-For example:
+We next define a Ridge structure as usual but using our generic type `F`. The model only stores the Ridge coefficient `beta`.
 
 ```rust
-impl<F: Float + Sum> RidgeModel<F> for GenRidgeEstimator<F> {
-    ...
-}
+{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:gen_ridge_estimator}}
 ```
 
-This means:
-- `F` must implement `Float` (it must behave like a floating point number: support `powi`, `abs`, etc.)
-- `F` must implement `Sum` (so we can sum an iterator of `F`)
-
-This allows code like:
+We implement the constructor as usual as well.
 
 ```rust
-let mean = xs.iter().copied().sum::<F>() / F::from(xs.len()).unwrap();
+{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:gen_ridge_estimator_impl}}
 ```
 
-Using generic bounds allows the estimator to work with `f32`, `f64`, or any numeric type implementing `Float`. The compiler can generate specialized code for each concrete type.
+## Fit and predict methods
 
-## Generic Ridge estimator
-
-Our Ridge estimator that works with `f32` and `f64` takes this form:
+We can finally implement the trait `RidgeModel` for our `GenRidgeEstimator`.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs}}
+{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:gen_ridge_estimator_trait_impl}}
 ```
-
 Notice that the trait bounds `<F: Float + Sum> RidgeModel<F>` are defined after the name of a `trait` or `struct`, or right next to an `impl`.
 
-## Summary
+````admonish title="Why do we need the Sum trait bound"
 
-- Generics support type-flexible code.
-- Trait bounds like `<F: Float + Sum>` constrain what operations are valid.
-- Without `Sum`, the compiler does not allow `.sum()` on iterators of `F`.
-
-Try removing `Sum` from the bound:
+Without `Sum`, the compiler does not allow `.sum()` on iterators of `F`. Try removing `Sum` from the bound:
 
 ```rust
 impl<F: Float> RidgeModel<F> for GenRidgeEstimator<F>
@@ -85,5 +54,26 @@ And keep a call to `.sum()`. The compiler should complain:
 error[E0599]: the method `sum` exists for iterator `std::slice::Iter<'_, F>`,
               but its trait bounds were not satisfied
 ```
+````
 
-To resolve this, add `+ Sum` to the bound.
+```admonish title="The copied() method"
+
+The `copied()` method in `.iter().copied().sum::<F>()` is necessary because we're iterating over a slice of `F`, and `F` is a generic type that implements the `Copy` trait but not the `Clone` trait by default. 
+
+Without this, `x.iter()` yields references `&F` while `sum::<F>()` expects owned values of type `F`. We could have used `cloned()` instead but since `Float` already requires `Copy`, this works without adding the `Clone` trait bound.
+
+Note that in the `predict` function, we don't need to use `Copy` because we manually dereference each item, `*xi`, inside the `.map()`. It could have been possible to use `copied()` there as well and modify the mapping closure accordingly.
+
+```
+
+````admonish title="The unwrap() method"
+
+The `unwrap` in `F::from(n).unwrap()`. The length `n` of the slice `x` is of type `usize`, as usual. We need `n_f` to be of type `F` so that we can perform operations like division with other `F`-typed values. 
+
+The conversion is done using `F::from(n)` which returns an `Option<F>`, not a plain `F`. We assumed that the conversion always succeeds or crashes by using `unwrap()`. Since `n` is from `x.len()`, it might easily be representable as `f32` or `f64`, so unwrapping seems safe.
+
+Note that we could have handled the error explicitly:
+
+```rust
+let n_f: F = F::from(n).expect("Length too large to convert to float");
+````

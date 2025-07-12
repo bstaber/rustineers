@@ -49,6 +49,7 @@ pub fn predict(x: &[f64], beta: f64) -> Vec<f64> {
     x.iter().map(|xi| xi * beta).collect()
 }
 
+// ANCHOR: run_demo
 pub fn run_demo() {
     println!("-----------------------------------------------------");
     println!("Running ridge_regression_1d::functional_std::run_demo");
@@ -67,3 +68,4 @@ pub fn run_demo() {
     println!("Predictions: {preds:?}");
     println!("-----------------------------------------------------");
 }
+// ANCHOR_END: run_demo
