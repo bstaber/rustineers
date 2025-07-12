@@ -87,11 +87,16 @@ mod tests {
         let y: Vec<f64> = vec![0.1, 0.2];
         let true_beta: f64 = 0.1;
         let lambda2: f64 = 0.0;
-        
+
         let mut model = GenRidgeEstimator::new(0.0);
         model.fit(&x, &y, lambda2);
 
-        assert!((true_beta - model.beta).abs() < 1e-6, "Estimate {} not close enough to true solution {}", true_beta, model.beta);
+        assert!(
+            (true_beta - model.beta).abs() < 1e-6,
+            "Estimate {} not close enough to true solution {}",
+            true_beta,
+            model.beta
+        );
     }
 
     #[test]
@@ -100,11 +105,16 @@ mod tests {
         let y: Vec<f32> = vec![0.1, 0.2];
         let true_beta: f32 = 0.1;
         let lambda2: f32 = 0.0;
-        
+
         let mut model = GenRidgeEstimator::new(0.0);
         model.fit(&x, &y, lambda2);
 
-        assert!((true_beta - model.beta).abs() < 1e-6, "Estimate {} not close enough to true solution {}", true_beta, model.beta);
+        assert!(
+            (true_beta - model.beta).abs() < 1e-6,
+            "Estimate {} not close enough to true solution {}",
+            true_beta,
+            model.beta
+        );
     }
 }
 // ANCHOR_END: tests

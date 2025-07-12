@@ -67,3 +67,37 @@ impl RidgeEstimator {
     }
 }
 // ANCHOR_END: ridge_estimator_impl_predict
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ndarray::array;
+
+    #[test]
+    fn test_ridge_estimator_constructor() {
+        let model = RidgeEstimator::new();
+        assert_eq!(model.beta, None, "beta is expected to be None");
+    }
+
+    #[test]
+    fn test_ridge_estimator_solution() {
+        let x: Array1<f64> = array![1.0, 2.0];
+        let y: Array1<f64> = array![0.1, 0.2];
+        let true_beta: f64 = 0.1;
+        let lambda2: f64 = 0.0;
+
+        let mut model = RidgeEstimator::new();
+        model.fit(&x, &y, lambda2);
+
+        assert!(model.beta.is_some(), "beta is expected to be Some(f64)");
+
+        assert!(
+            (true_beta - model.beta.unwrap()).abs() < 1e-6,
+            "Estimate {} not close enough to true solution {}",
+            true_beta,
+            model.beta.unwrap()
+        );
+    }
+}
+// ANCHOR_END: tests

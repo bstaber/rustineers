@@ -44,9 +44,14 @@ mod tests {
         let y: Vec<f64> = vec![0.1, 0.2];
         let true_beta: f64 = 0.1;
         let lambda2: f64 = 0.0;
-        
+
         let beta_estimate: f64 = ridge_estimator(&x, &y, lambda2);
-        assert!((true_beta - beta_estimate).abs() < 1e-6, "Estimate {} not close enough to true solution {}", beta_estimate, true_beta);
+        assert!(
+            (true_beta - beta_estimate).abs() < 1e-6,
+            "Estimate {} not close enough to true solution {}",
+            beta_estimate,
+            true_beta
+        );
     }
 }
 // ANCHOR_END: tests

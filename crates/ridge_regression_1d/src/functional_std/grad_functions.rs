@@ -85,7 +85,12 @@ mod tests {
         let grad = grad_loss_function_naive(&x, &y, beta, lambda2);
         let expected_grad = 0.2;
         let tol = 1e-6;
-        assert!((grad - expected_grad).abs() < tol, "Expected {}, got {}", expected_grad, grad);
+        assert!(
+            (grad - expected_grad).abs() < tol,
+            "Expected {}, got {}",
+            expected_grad,
+            grad
+        );
     }
 
     #[test]
@@ -98,7 +103,12 @@ mod tests {
         let grad = grad_loss_function_inline(&x, &y, beta, lambda2);
         let expected_grad = 0.2;
         let tol = 1e-6;
-        assert!((grad - expected_grad).abs() < tol, "Expected {}, got {}", expected_grad, grad);
+        assert!(
+            (grad - expected_grad).abs() < tol,
+            "Expected {}, got {}",
+            expected_grad,
+            grad
+        );
     }
 
     #[test]

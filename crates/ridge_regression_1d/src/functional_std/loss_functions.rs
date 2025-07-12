@@ -108,7 +108,7 @@ mod tests {
         let lambda2: f64 = 1.0;
 
         let val: f64 = loss_function_inline(&x, &y, beta, lambda2);
-        assert!(val > 0.0); 
+        assert!(val > 0.0);
     }
 
     #[test]
