@@ -110,7 +110,7 @@ Here, `crate` refers to the root of this library crate `lib.rs`. If you check ou
 Now let's see how you could use the library from a binary crate:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/main.rs}}
+{{#include ../../../../crates/ridge_regression_1d/src/functional_std/mod.rs:run_demo}}
 ```
 
 You can run this with `cargo run`.

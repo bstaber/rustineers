@@ -12,8 +12,9 @@
         - [Closed-form solution](ridge_regression_1d/structured_std/closed_form_solution.md)
         - [Gradient descent](ridge_regression_1d/structured_std/gradient_descent.md)
         - [Trait Ridge model](ridge_regression_1d/structured_std/traits.md)
-    - [Generics](ridge_regression_1d/generics_std/closed_form_solution.md)
-        <!-- - [Closed-form solution](ridge_regression_1d/generics_std/closed_form_solution.md) -->
+    - [Generics](templates/generics.md)
+        - [Generics & trait bounds](ridge_regression_1d/generics_std/what_are_generics.md)
+        - [Closed-form solution](ridge_regression_1d/generics_std/closed_form_solution.md)
     - [Option, errors, ndarray](ridge_regression_1d/structured_ndarray/closed_form_solution.md)
 - [Simple optimizers 🦀🦀](simple_optimizers/README.md)
     - [Trait-based](simple_optimizers/traits_based_implementation.md)
