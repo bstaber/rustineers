@@ -1,4 +1,4 @@
-name: Rust Tests
+name: Rust Ttsts
 
 on:
   push:
@@ -15,9 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Rust
-      uses: actions/setup-rust@v1
-      with:
-        rust-version: stable
+      uses: dtolnay/rust-toolchain@stable
 
     - name: Cache Cargo registry
       uses: actions/cache@v4
