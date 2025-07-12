@@ -69,3 +69,48 @@ pub fn grad_loss_function_inline(x: &[f64], y: &[f64], beta: f64, lambda2: f64) 
     -grad_mse + 2.0 * lambda2 * beta
 }
 // ANCHOR_END: grad_loss_function_inline
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_grad_naive() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let beta: f64 = 0.1;
+        let lambda2: f64 = 1.0;
+
+        let grad = grad_loss_function_naive(&x, &y, beta, lambda2);
+        let expected_grad = 0.2;
+        let tol = 1e-6;
+        assert!((grad - expected_grad).abs() < tol, "Expected {}, got {}", expected_grad, grad);
+    }
+
+    #[test]
+    fn test_grad_inline() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let beta: f64 = 0.1;
+        let lambda2: f64 = 1.0;
+
+        let grad = grad_loss_function_inline(&x, &y, beta, lambda2);
+        let expected_grad = 0.2;
+        let tol = 1e-6;
+        assert!((grad - expected_grad).abs() < tol, "Expected {}, got {}", expected_grad, grad);
+    }
+
+    #[test]
+    fn test_naive_vs_inline() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let beta: f64 = 0.1;
+        let lambda2: f64 = 1.0;
+
+        let grad1 = grad_loss_function_inline(&x, &y, beta, lambda2);
+        let grad2 = grad_loss_function_naive(&x, &y, beta, lambda2);
+        assert_eq!(grad1, grad2);
+    }
+}
+// ANCHOR_END: tests

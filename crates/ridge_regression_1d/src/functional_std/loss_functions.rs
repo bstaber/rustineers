@@ -83,3 +83,44 @@ pub fn loss_function_inline(x: &[f64], y: &[f64], beta: f64, lambda2: f64) -> f6
     mean_squared_error + lambda2 * beta * beta
 }
 // ANCHOR_END: loss_function_line
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_loss_function_naive() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let beta: f64 = 0.1;
+        let lambda2: f64 = 1.0;
+
+        let val: f64 = loss_function_naive(&x, &y, beta, lambda2);
+        assert!(val > 0.0);
+    }
+
+    #[test]
+    fn test_loss_function_line() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let beta: f64 = 0.1;
+        let lambda2: f64 = 1.0;
+
+        let val: f64 = loss_function_inline(&x, &y, beta, lambda2);
+        assert!(val > 0.0); 
+    }
+
+    #[test]
+    fn test_naive_vs_inline() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let beta: f64 = 0.1;
+        let lambda2: f64 = 1.0;
+
+        let val1 = loss_function_naive(&x, &y, beta, lambda2);
+        let val2 = loss_function_inline(&x, &y, beta, lambda2);
+        assert_eq!(val1, val2);
+    }
+}
+// ANCHOR_END: tests
