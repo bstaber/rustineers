@@ -129,3 +129,51 @@ impl RidgeModel for RidgeEstimator {
     }
 }
 // ANCHOR_END: impl_closedform_model
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ridge_estimator() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let true_beta: f64 = 0.1;
+        let lambda2: f64 = 0.0;
+        
+        let mut model = RidgeEstimator::new(0.0);
+        model.fit(&x, &y, lambda2);
+
+        assert!((true_beta - model.beta).abs() < 1e-6, "Estimate {} not close enough to true solution {}", model.beta, true_beta);
+    }
+
+    #[test]
+    fn test_ridge_gd() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let true_beta: f64 = 0.1;
+        let lambda2: f64 = 0.0;
+        
+        let mut model = RidgeGradientDescent::new(100, 0.1, 0.0);
+        model.fit(&x, &y, lambda2);
+
+        assert!((true_beta - model.beta).abs() < 1e-6, "Estimate {} not close enough to true solution {}", model.beta, true_beta);
+    }
+
+    #[test]
+    fn test_ridge_estimatir_vs_gd() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let lambda2: f64 = 0.0;
+        
+        let mut model1 = RidgeEstimator::new(0.0);
+        model1.fit(&x, &y, lambda2);
+
+        let mut model2 = RidgeGradientDescent::new(100, 0.1, 0.0);
+        model2.fit(&x, &y, lambda2);
+
+        assert!((model1.beta - model2.beta).abs() < 1e-6, "Estimates {} and {} are not close enough to each other", model1.beta, model2.beta);
+    }
+}
+// ANCHOR_END: tests

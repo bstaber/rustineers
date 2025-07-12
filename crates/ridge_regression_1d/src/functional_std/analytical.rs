@@ -33,6 +33,7 @@ pub fn ridge_estimator(x: &[f64], y: &[f64], lambda2: f64) -> f64 {
     num / denom
 }
 
+// ANCHOR: tests
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -48,3 +49,4 @@ mod tests {
         assert!((true_beta - beta_estimate).abs() < 1e-6, "Estimate {} not close enough to true solution {}", beta_estimate, true_beta);
     }
 }
+// ANCHOR_END: tests
