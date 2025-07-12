@@ -75,3 +75,23 @@ impl<F: Float + Sum> RidgeModel<F> for GenRidgeEstimator<F> {
     }
 }
 // ANCHOR_END: gen_ridge_estimator_trait_impl
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_ridge_estimator() {
+        let x: Vec<f64> = vec![1.0, 2.0];
+        let y: Vec<f64> = vec![0.1, 0.2];
+        let true_beta: f64 = 0.1;
+        let lambda2: f64 = 0.0;
+        
+        let mut model = GenRidgeEstimator::new(0.0);
+        model.fit(&x, &y, lambda2);
+
+        assert!((true_beta - model.beta).abs() < 1e-6, "Estimate {} not close enough to true solution {}", true_beta, model.beta);
+    }
+}
+// ANCHOR_END: tests
