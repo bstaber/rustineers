@@ -21,3 +21,8 @@
     - [Enum-based](simple_optimizers/enum_based_implementation.md)
     - [Adding tests](simple_optimizers/tests.md)
     - [Using ndarray](simple_optimizers/ndarray_based_implementation.md)
+- [Kernel Ridge regression 🦀🦀](kernel_ridge_regression/README.md)
+    - [Kernel trait](kernel_ridge_regression/kernel_trait.md)
+    - [Gram matrix](kernel_ridge_regression/gram_matrix.md)
+    - [KRR model](kernel_ridge_regression/krr_model.md)
+    - [Hyperparameter tuning](kernel_ridge_regression/hparams_tuning.md)
