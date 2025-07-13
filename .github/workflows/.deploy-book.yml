@@ -1,5 +1,4 @@
-name: Deploy mdBook to GitHub Pages
-
+name: Build and deploy mdbook
 on:
   push:
     branches: [main]
