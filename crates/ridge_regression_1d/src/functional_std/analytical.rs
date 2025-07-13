@@ -15,6 +15,7 @@
 /// # Panics
 ///
 /// Panics if `x` and `y` do not have the same length.
+// ANCHOR: ridge_estimator
 pub fn ridge_estimator(x: &[f64], y: &[f64], lambda2: f64) -> f64 {
     let n: usize = x.len();
     assert_eq!(n, y.len(), "x and y must have the same length");
@@ -32,6 +33,7 @@ pub fn ridge_estimator(x: &[f64], y: &[f64], lambda2: f64) -> f64 {
 
     num / denom
 }
+// ANCHOR_END: ridge_estimator
 
 // ANCHOR: tests
 #[cfg(test)]

@@ -11,10 +11,6 @@ In your crate, `lib.rs` is responsible for organizing and exposing the component
 We can re-export key functions and define top-level utilities like `fit` and `predict`. The complete `lib.rs` file now looks like this:
 
 ```rust
-/// This module exposes the main components of the Ridge Regression 1D crate.
-///
-/// It re-exports internal modules and defines high-level helper functions
-/// for training (`fit`) and predicting (`predict`) using Ridge regression.
 pub mod grad_functions;
 pub mod loss_functions;
 pub mod optimizer;
