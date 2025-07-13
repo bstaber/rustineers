@@ -105,7 +105,7 @@ use crate::utils::dot;
 Here, `crate` refers to the root of this library crate `lib.rs`. If you check out one of the modules again (e.g., `loss_functions.rs`), you'll notice that's exactly what we are doing to import functions from other modules.
 
 
-## Example of usage in `main.rs`
+## Example of usage
 
 Now let's see how you could use the library from a binary crate:
 

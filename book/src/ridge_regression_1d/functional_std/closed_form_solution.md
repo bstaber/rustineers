@@ -12,7 +12,7 @@ $$\hat{\beta}_\lambda = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sum_
 We now implement this solution in Rust, using only the standard library.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/analytical.rs}}
+{{#include ../../../../crates/ridge_regression_1d/src/functional_std/analytical.rs:ridge_estimator}}
 ```
 
 You could also express it as a single iterator chain, similar to how we implemented the loss function earlier.

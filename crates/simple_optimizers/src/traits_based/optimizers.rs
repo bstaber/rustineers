@@ -1,7 +1,7 @@
-// ANCHOR: optimizer_trait
 /// A trait representing an optimization algorithm that can update weights using gradients.
 ///
 /// Optimizers must implement the `step` method, which modifies weights in place.
+// ANCHOR: optimizer_trait
 pub trait Optimizer {
     /// Performs a single optimization step.
     ///
@@ -12,10 +12,10 @@ pub trait Optimizer {
 }
 // ANCHOR_END: optimizer_trait
 
-// ANCHOR: gd_struct
 /// Basic gradient descent optimizer.
 ///
 /// Updates each weight by subtracting the gradient scaled by a learning rate.
+// ANCHOR: gd_struct
 pub struct GradientDescent {
     pub learning_rate: f64,
 }
@@ -46,10 +46,10 @@ impl Optimizer for GradientDescent {
 }
 // ANCHOR_END: impl_optimizer_gd_step
 
-// ANCHOR: momentum_struct
 /// Momentum-based gradient descent optimizer.
 ///
 /// Combines current gradients with a velocity term to smooth updates.
+// ANCHOR: momentum_struct
 pub struct Momentum {
     pub learning_rate: f64,
     pub momentum: f64,

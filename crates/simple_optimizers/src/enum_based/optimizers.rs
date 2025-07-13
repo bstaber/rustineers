@@ -1,7 +1,7 @@
-// ANCHOR: enum_definition
 /// An enum representing different optimizers with built-in state and update rules.
 ///
 /// Supports both gradient descent and momentum-based methods.
+// ANCHOR: enum_definition
 #[derive(Debug, Clone)]
 pub enum Optimizer {
     /// Gradient Descent optimizer with a fixed learning rate.
