@@ -87,14 +87,15 @@ version = "0.1.0"
 dependencies = [
  "ndarray",
  "num-traits",
+ "rustineers",
 ]
 
 [[package]]
 name = "rustineers"
 version = "0.1.0"
 dependencies = [
- "ridge_regression_1d",
- "simple_optimizers",
+ "ndarray",
+ "num-traits",
 ]
 
 [[package]]
@@ -102,4 +103,6 @@ name = "simple_optimizers"
 version = "0.1.0"
 dependencies = [
  "ndarray",
+ "num-traits",
+ "rustineers",
 ]
