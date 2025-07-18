@@ -1,5 +1,4 @@
 use ndarray::Array1;
-use std::error::Error;
 
 /// A Ridge regression estimator using `ndarray` for vectorized operations.
 ///
@@ -59,10 +58,10 @@ impl RidgeEstimator {
     /// # Returns
     /// A `Result` containing the predicted values, or an error if the model
     /// has not been fitted.
-    pub fn predict(&self, x: &Array1<f64>) -> Result<Array1<f64>, Box<dyn Error>> {
+    pub fn predict(&self, x: &Array1<f64>) -> Result<Array1<f64>, String> {
         match &self.beta {
             Some(beta) => Ok(*beta * x),
-            None => Err("Model not fitted".into()),
+            None => Err("Model not fitted".to_string()),
         }
     }
 }
@@ -78,6 +77,16 @@ mod tests {
     fn test_ridge_estimator_constructor() {
         let model = RidgeEstimator::new();
         assert_eq!(model.beta, None, "beta is expected to be None");
+    }
+
+    #[test]
+    fn test_unfitted_estimator() {
+        let model = RidgeEstimator::new();
+        let x: Array1<f64> = array![1.0, 2.0];
+        let result: Result<Array1<f64>, String> = model.predict(&x);
+
+        assert!(result.is_err());
+        assert_eq!(result.unwrap_err(), "Model not fitted");
     }
 
     #[test]

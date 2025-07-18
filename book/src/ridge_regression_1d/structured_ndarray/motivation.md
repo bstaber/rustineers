@@ -1,0 +1,28 @@
+# Using `ndarray`, `Option`, and error handling
+
+This section introduces several important features of the language:
+
+- Using the `ndarray` crate for numerical arrays
+- Representing optional values with `Option`, `Some`, and `None`
+- Using pattern matching with `match`
+- Handling errors using `Box<dyn Error>` and `.into()`
+- Automatically deriving common trait implementations using `#[derive(...)]`
+
+## Motivation
+
+In previous sections, we worked with `Vec<f64>` and returned plain values. In practice, we might need:
+
+- Efficient linear algebra tools, provided by external crates such as `ndarray` and `nalgebra`
+- A way to represent "fitted" or "not fitted" states, using `Option<f64>`
+- A way to return errors when something goes wrong, using `Result<_, Box<dyn Error>>`
+- Automatically implementing traits like `Debug`, `Clone`, and `Default` to simplify testing, debugging, and construction
+
+We combine these in the implementation of the analytical `RidgeEstimator`. You can have a look to the full code below before we go through the main features step by step.
+
+<details>
+<summary>The full code : <b>regressor.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs}}
+```
+</details>
