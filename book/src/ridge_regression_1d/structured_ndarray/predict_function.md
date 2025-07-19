@@ -27,7 +27,7 @@ match self.beta {
 The full function takes this form:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs:ridge_estimator_impl_predict}}
+{{#include ../../../../crates/ridge_1d_ndarray/src/regressor.rs:ridge_estimator_impl_predict}}
 ```
 
 Here, we also decide to explicitly raise an error if the model has not been fitted. To do this in a type-safe way, we use Rust’s `Result` enum, which is commonly used for functions that may fail. The `Result` enum can be either `Ok(value)` (indicating success) or `Err(error)` (indicating failure). More details about error handling are given in the next section.

@@ -9,7 +9,7 @@ To make our `RidgeEstimator` struct more ergonomic, we derive a few useful trait
 - `Default` enables us to create a default value using `RidgeEstimator::default()`, which internally calls the `new()` method we define.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs:struct}}
+{{#include ../../../../crates/ridge_1d_ndarray/src/regressor.rs:struct}}
 ```
 
 The line

@@ -1,5 +1,23 @@
-use crate::utils::dot;
+/// Dot product between two vectors.
+///
+/// # Arguments
+/// * `a` - First input vector
+/// * `b` - Second input vector
+///
+/// # Returns
+///
+/// The float value of the dot product.
+///
+/// # Panics
+///
+/// Panics if `a` and `b` do have the same length.
+// ANCHOR: dot
+pub fn dot(a: &[f64], b: &[f64]) -> f64 {
+    assert_eq!(a.len(), b.len(), "Input vectors must have the same length");
+    a.iter().zip(b.iter()).map(|(xi, yi)| xi * yi).sum()
+}
 
+// ANCHOR_END: dot
 /// Computes the gradient of the Ridge regression loss function (naive version).
 ///
 /// This implementation first explicitly computes the residuals and then performs
@@ -69,6 +87,42 @@ pub fn grad_loss_function_inline(x: &[f64], y: &[f64], beta: f64, lambda2: f64) 
     -grad_mse + 2.0 * lambda2 * beta
 }
 // ANCHOR_END: grad_loss_function_inline
+
+/// Performs gradient descent to minimize the Ridge regression loss function.
+///
+/// # Arguments
+///
+/// * `grad_fn` - A function that computes the gradient of the Ridge loss
+/// * `x` - Input features as a slice (`&[f64]`)
+/// * `y` - Target values as a slice (`&[f64]`)
+/// * `lambda2` - Regularization parameter
+/// * `lr` - Learning rate
+/// * `n_iters` - Number of gradient descent iterations
+/// * `init_beta` - Initial value of the regression coefficient
+///
+/// # Returns
+///
+/// The optimized regression coefficient `beta` after `n_iters` updates
+// ANCHOR: gradient_descent_estimator
+pub fn ridge_estimator(
+    grad_fn: impl Fn(&[f64], &[f64], f64, f64) -> f64,
+    x: &[f64],
+    y: &[f64],
+    lambda2: f64,
+    lr: f64,
+    n_iters: usize,
+    init_beta: f64,
+) -> f64 {
+    let mut beta = init_beta;
+
+    for _ in 0..n_iters {
+        let grad = grad_fn(x, y, beta, lambda2);
+        beta -= lr * grad;
+    }
+
+    beta
+}
+// ANCHOR_END: gradient_descent_estimator
 
 // ANCHOR: tests
 #[cfg(test)]
