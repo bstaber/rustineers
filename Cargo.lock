@@ -127,3 +127,24 @@ dependencies = [
  "num-traits",
  "rustineers",
 ]
+
+[[package]]
+name = "simple_optimizers_enums"
+version = "0.1.0"
+dependencies = [
+ "rustineers",
+]
+
+[[package]]
+name = "simple_optimizers_ndarray"
+version = "0.1.0"
+dependencies = [
+ "rustineers",
+]
+
+[[package]]
+name = "simple_optimizers_traits"
+version = "0.1.0"
+dependencies = [
+ "rustineers",
+]
