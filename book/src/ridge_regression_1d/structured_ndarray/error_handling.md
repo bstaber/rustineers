@@ -1,6 +1,6 @@
-# Error handling with `Box<dyn Error>` and `.into()`
+# Error handling with `Result`
 
-We decided to raise an error if the model has been fitted yet using the pattern matching:
+We decided to raise an error if the model hasn't been fitted yet using the pattern matching:
 
 ```rust
 match self.beta {
@@ -9,7 +9,7 @@ match self.beta {
 }
 ```
 
-which makes sense because our `predict` function returns a `Result<Array1<f64>, String>`. We use the `to_string()` methdo to convert the string literal to a regular `String` as requested. In practice, the user can use this function as follows:
+This makes sense because our `predict` function returns a `Result<Array1<f64>, String>`. We use the `to_string()` method to convert the string literal to a regular `String` as requested. In practice, the user can use this function as follows:
 
 ```rust
 let y_pred = model.predict(&x).unwrap();
@@ -22,7 +22,7 @@ which will panic if the model is not fitted, or
 let y_pred = model.predict(&x).expect("Model not fitted yet");
 ```
 
-to add a custom error message. These methods will make the code crash. Another strategy is the handle the `Result` with a `match`too, i.e., 
+to add a custom error message. These methods will make the code crash. Another strategy is to handle the `Result` with a `match` too, i.e., 
 
 ```rust
 match model.predict(&x) {
@@ -35,7 +35,7 @@ In summary, we have two matches that serve different roles:
 - Internal match: is `beta` available ?
 - External match: did `predict` work ?
 
-This might seem unecessary in this simple example because we only a single error that can occur (missing `beta`). We could also handle other kinds of errors such as dimensionality mismatch.
+We could also handle other kinds of errors such as dimensionality mismatch. To do, we can implement our own types of errors.
 
 ## More advanced error handling
 

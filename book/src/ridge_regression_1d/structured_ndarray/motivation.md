@@ -14,7 +14,7 @@ In previous sections, we worked with `Vec<f64>` and returned plain values. In pr
 
 - Efficient linear algebra tools, provided by external crates such as `ndarray` and `nalgebra`
 - A way to represent "fitted" or "not fitted" states, using `Option<f64>`
-- A way to return errors when something goes wrong, using `Result<_, Box<dyn Error>>`
+- A way to return errors when something goes wrong, using `Result<_, _>>`
 - Automatically implementing traits like `Debug`, `Clone`, and `Default` to simplify testing, debugging, and construction
 
 We combine these in the implementation of the analytical `RidgeEstimator`. You can have a look to the full code below before we go through the main features step by step.

@@ -12,24 +12,12 @@ where: $x_i \in \mathbb{R}$ is an input covariate, $y_i \in \mathbb{R}$ is the a
 
 This chapter introduces several useful concepts for Rust beginners. It is divided into four sections, each solving the same problem (1D Ridge regression) using different tools and with slightly increasing complexity.
 
-* The [first section)](functional_std/motivation.md) shows how to use basic functions and the Rust standard library to build a simple library. In particular, it shows how to manipulate vectors (`Vec<f64>`) and slices (`&[f64]`).
+* The [first section](functional_std/motivation.md) shows how to use basic functions and the Rust standard library to build a simple library. In particular, it shows how to manipulate vectors (`Vec<f64>`) and slices (`&[f64]`).
 
 * The [next section](structured_std/motivation.md) explains how to solve the same problem using structs and traits to make the code more modular and extensible.
 
 * The [third section](generics_std/motivation.md) introduces generics, allowing the code to work with different floating-point types (`f32` and `f64`). 
 
 * Finally, the [last section](structured_ndarray/motivation.md) goes further by using `ndarray` for linear algebra and incorporating additional Rust features such as optional values, pattern matching, and error handling.
-
-## What you'll learn
-
-This module is perfect if you're just starting with Rust and want to:
-
-- Write beginner-friendly numerical code
-- Understand how to manipulate vectors (`Vec<f64>`) and slices (`&[f64]`)
-- Write clean and safe code using the standard library only
-- Structure your functions with clear responsibilities
-- Learn good Rust patterns: immutability, iterators, ownership
-- How to make a simple crate out of it 
-- How to expose a public API
 
 If you want to implement and run this example while you read but are not familiar with Cargo yet, have a look at [Cargo 101](../CARGO_TUTORIAL.md) for how to set up your project.
