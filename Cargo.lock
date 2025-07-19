@@ -120,15 +120,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "simple_optimizers"
-version = "0.1.0"
-dependencies = [
- "ndarray",
- "num-traits",
- "rustineers",
-]
-
-[[package]]
 name = "simple_optimizers_enums"
 version = "0.1.0"
 dependencies = [
@@ -139,6 +130,7 @@ dependencies = [
 name = "simple_optimizers_ndarray"
 version = "0.1.0"
 dependencies = [
+ "ndarray",
  "rustineers",
 ]
 
