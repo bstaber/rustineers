@@ -3,7 +3,7 @@ pub use regressor::{RidgeEstimator, RidgeGradientDescent, RidgeModel};
 
 pub fn run_demo() {
     println!("-----------------------------------------------------");
-    println!("Running ridge_regression_1d::structured_std::run_demo");
+    println!("Running ridge_1d_struct::run_demo");
     let mut model: RidgeEstimator = RidgeEstimator::new(0.0);
 
     let x: Vec<f64> = vec![1.0, 2.0];

@@ -3,7 +3,7 @@ pub use regressor::{GenRidgeEstimator, RidgeModel};
 
 pub fn run_demo() {
     println!("-----------------------------------------------------");
-    println!("Running ridge_regression_1d::generics_std::run_demo");
+    println!("Running ridge_1d_generic::run_demo");
 
     let mut model: GenRidgeEstimator<f32> = GenRidgeEstimator::new(1.0);
 

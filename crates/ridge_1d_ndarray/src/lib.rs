@@ -4,7 +4,7 @@ pub use regressor::RidgeEstimator;
 
 pub fn run_demo() {
     println!("-----------------------------------------------------");
-    println!("Running ridge_regression_1d::structured_ndarray::run_demo");
+    println!("Running ridge_1d_ndarray::run_demo");
 
     let mut model = RidgeEstimator::new();
 

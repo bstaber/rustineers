@@ -23,7 +23,7 @@ We combine these in the implementation of the analytical `RidgeEstimator`. You c
 <summary>The full code : <b>regressor.rs</b></summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs}}
+{{#include ../../../../crates/ridge_1d_ndarray/src/regressor.rs}}
 ```
 </details>
 
