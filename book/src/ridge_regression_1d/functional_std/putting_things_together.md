@@ -113,7 +113,7 @@ Now let's see how you could use the library from a binary crate:
 {{#include ../../../../crates/ridge_regression_1d/src/functional_std/mod.rs:run_demo}}
 ```
 
-You can run this with `cargo run`.
+You can run this with `cargo run`. We haven't define the predict function but we will do it in the final section.
 
 ## Summary
 

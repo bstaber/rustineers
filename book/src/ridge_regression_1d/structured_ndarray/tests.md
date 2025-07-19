@@ -16,7 +16,7 @@ Recall that tests can be executed by running `cargo test`.
 
 ## Testing the constructor
 
-A first simple test, we check that `beta` of a new `RidgeEstimator` is `None`.
+As a first simple test, we check that `beta` of a new `RidgeEstimator` is `None`.
 
 ```rust
 #[test]
@@ -28,7 +28,7 @@ fn test_ridge_estimator_constructor() {
 
 ## Testing an unfitted model
 
-A second test, we check that the predict function returns error if the model is unfitted.
+As a second test, we check that the predict function returns error if the model is unfitted.
 
 ```rust
 #[test]
