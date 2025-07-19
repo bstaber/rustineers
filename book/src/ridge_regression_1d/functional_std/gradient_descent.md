@@ -14,7 +14,7 @@ Where `η` is the learning rate, and `∇βL(β)` is the gradient of the loss.
 We allow flexible experimentation by passing the gradient function as parameters:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/optimizer.rs:gradient_descent}}
+{{#include ../../../../crates/ridge_1d_fn/src/gradient_descent.rs:gradient_descent_estimator}}
 ```
 
 This version is generic, letting us plug in any valid `grad_fn`.
@@ -29,21 +29,21 @@ This version breaks the computation into two separate steps:
 We first start by implementing our own `dot` function by relying on iterators, map chaining, and summing the results.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/utils.rs:dot}}
+{{#include ../../../../crates/ridge_1d_fn/src/gradient_descent.rs:dot}}
 ```
 
 Our first implementation takes the following form:
 
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/grad_functions.rs:grad_loss_function_naive}}
+{{#include ../../../../crates/ridge_1d_fn/src/gradient_descent.rs:grad_loss_function_naive}}
 ```
 
 ## Gradient function: inlined iterator-based implementation
 In this version, we fuse the residual and gradient computation into a single iterator chain. This avoids intermediate memory allocations and takes full advantage of Rust’s zero-cost abstraction model.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/grad_functions.rs:grad_loss_function_inline}}
+{{#include ../../../../crates/ridge_1d_fn/src/gradient_descent.rs:grad_loss_function_inline}}
 ```
 
 Key differences:

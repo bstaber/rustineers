@@ -9,6 +9,7 @@ readme = "README.md"
 members = [
     "crates/simple_optimizers",
     "crates/ridge_regression_1d",
+    "crates/ridge_1d_fn"
 ]
 
 [dependencies]
