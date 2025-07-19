@@ -26,3 +26,36 @@ We combine these in the implementation of the analytical `RidgeEstimator`. You c
 {{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs}}
 ```
 </details>
+
+# What we're building here
+
+The aim of this chapter is to build a small crate with the following layout:
+
+```text
+crates/ridge_1d_ndarray/
+├── Cargo.toml
+└── src
+    ├── regressor.rs    # Closed-form solution of the Ridge estimator
+    └── lib.rs          # Main entry point for the library
+```
+
+Again, the module `regressor.rs` implements a `RidgeEstimator` type. We end up with the following user interface:
+
+```rust
+use ndarray::array;
+use regressor::RidgeEstimator;
+
+let mut model = RidgeEstimator::new();
+
+let x = array![1.0, 2.0];
+let y = array![0.1, 0.2];
+let lambda2 = 0.001;
+
+model.fit(&x, &y, lambda2);
+let preds = model.predict(&x);
+
+match model.beta {
+    Some(beta) => println!("Learned beta: {beta}, true solution: 0.1!"),
+    None => println!("Model not fitted!"),
+}
+```

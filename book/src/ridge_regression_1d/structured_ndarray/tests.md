@@ -8,7 +8,7 @@ The full test module can be seen below. We go through each of them in the sequel
 <summary>Full test module</summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs:tests}}
+{{#include ../../../../crates/ridge_1d_ndarray/src/regressor.rs:tests}}
 ```
 </details>
 

@@ -14,7 +14,7 @@ The `impl` of the fit function is shown below. As you can see, we essentially re
 
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/structured_ndarray/regressor.rs:ridge_estimator_impl_new_fit}}
+{{#include ../../../../crates/ridge_1d_ndarray/src/regressor.rs:ridge_estimator_impl_new_fit}}
 ```
 
 ```admonish

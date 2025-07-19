@@ -8,8 +8,10 @@ readme = "README.md"
 [workspace]
 members = [
     "crates/simple_optimizers",
-    "crates/ridge_regression_1d",
-    "crates/ridge_1d_fn"
+    "crates/ridge_1d_fn",
+    "crates/ridge_1d_struct",
+    "crates/ridge_1d_generic",
+    "crates/ridge_1d_ndarray",
 ]
 
 [dependencies]

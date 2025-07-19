@@ -89,11 +89,25 @@ dependencies = [
 ]
 
 [[package]]
-name = "ridge_regression_1d"
+name = "ridge_1d_generic"
+version = "0.1.0"
+dependencies = [
+ "num-traits",
+ "rustineers",
+]
+
+[[package]]
+name = "ridge_1d_ndarray"
 version = "0.1.0"
 dependencies = [
  "ndarray",
- "num-traits",
+ "rustineers",
+]
+
+[[package]]
+name = "ridge_1d_struct"
+version = "0.1.0"
+dependencies = [
  "rustineers",
 ]
 
