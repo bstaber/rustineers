@@ -14,7 +14,7 @@ You can inspect the full module that we're about the break down over here:
 <summary>Click to view <b>optimizers.rs</b></summary>
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs}}
 ```
 </details>
 
@@ -23,7 +23,7 @@ You can inspect the full module that we're about the break down over here:
 We define a trait called `Optimizer` to represent any optimizer that can update model weights based on gradients. In contrast to the previous sections where we mostly implemented `step`functions, here the trait requires implementors to define a `run` method with the following signature:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:trait}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:trait}}
 ```
 
 This method takes:
@@ -38,19 +38,19 @@ This trait `run` defines the whole optimization algorithm.
 The `GD` struct implements basic gradient descent with a fixed step size:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:struct_gd}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:struct_gd}}
 ```
 
 It has a constructor:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:impl_gd_new}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:impl_gd_new}}
 ```
 
 And implements `Optimizer` by subtracting the gradient scaled by the step size from the weights at each iteration.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:impl_gd_run}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:impl_gd_run}}
 ```
 
 Some notes:
@@ -69,19 +69,19 @@ Some notes:
 The `AGD` struct extends gradient descent with a classical momentum term:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:struct_agd}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:struct_agd}}
 ```
 
 It has a constructor:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:impl_agd_new}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:impl_agd_new}}
 ```
 
 This algorithm adds momentum to classical gradient descent. Instead of updating weights using just the current gradient, it maintains a velocity vector that accumulates the influence of past gradients. This helps smooth the trajectory and accelerates convergence on convex problems.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:impl_agd_run}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:impl_agd_run}}
 ```
 
 Some notes:
@@ -104,13 +104,13 @@ Some notes:
 The `AdaptiveAGD` struct implements a more advanced optimizer based on Nesterov's method and FISTA:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:AdaptiveAGD_struct}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:AdaptiveAGD_struct}}
 ```
 
 It has a constructor:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:AdaptiveAGD_impl_new}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:AdaptiveAGD_impl_new}}
 ```
 
 This algorithm implements an accelerated method inspired by Nesterov’s momentum and the FISTA algorithm. The key idea is to introduce an extrapolation step between iterates, controlled by a sequence `t_k`. This helps the optimizer "look ahead" and converge faster in smooth convex problems.
@@ -121,7 +121,7 @@ Update steps:
 - Combine `y_{k+1}` and `y_k` using a weighted average to get the new iterate `x_{k+1}`.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_and_ndarray/optimizers.rs:AdaptiveAGD_impl_run}}
+{{#include ../../../crates/simple_optimizers_ndarray/src/optimizers.rs:AdaptiveAGD_impl_run}}
 ```
 
 Some notes:

@@ -7,7 +7,7 @@ This chapter builds on the previous enum-based optimizer design. We now give eac
 Each optimizer variant includes its own parameters and, when needed, its internal state.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/enum_based/optimizers.rs:enum_definition}}
+{{#include ../../../crates/simple_optimizers_enums/src/optimizers.rs:enum_definition}}
 ```
 
 Here, `GradientDescent` stores only the learning rate, while `Momentum` additionally stores its velocity vector.
@@ -18,7 +18,7 @@ Here, `GradientDescent` stores only the learning rate, while `Momentum` addition
 We define convenience constructors for each optimizer. These make usage simpler and avoid manually writing match arms.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/enum_based/optimizers.rs:constructors}}
+{{#include ../../../crates/simple_optimizers_enums/src/optimizers.rs:constructors}}
 ```
 
 This helps create optimizers in a more idiomatic and clean way.
@@ -28,7 +28,7 @@ This helps create optimizers in a more idiomatic and clean way.
 The `step` method applies one optimization update depending on the variant. The method uses pattern matching to extract variant-specific behavior.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/enum_based/optimizers.rs:step}}
+{{#include ../../../crates/simple_optimizers_enums/src/optimizers.rs:step}}
 ```
 
 Here, `GradientDescent` simply applies the learning rate times the gradient. The `Momentum` variant updates and stores the velocity vector before updating the weights.

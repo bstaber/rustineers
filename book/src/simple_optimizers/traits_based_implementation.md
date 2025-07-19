@@ -10,7 +10,7 @@ It's similar to what you might do in other languages such as Python or C++, and 
 We define a common trait `Optimizer`, which describes the shared behavior of any optimizer. Let's assume that our optimizers only need a `step` function.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:optimizer_trait}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:optimizer_trait}}
 ```
 
 Any type that implements this trait must provide a `step` method. Let's illustrate how to use this by implementing two optimizers: gradient descent with and without momentum.
@@ -20,19 +20,19 @@ Any type that implements this trait must provide a `step` method. Let's illustra
 We first define the structure for the gradient descent algorithm. It only stores the learning rate as a `f64`.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:gd_struct}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:gd_struct}}
 ```
 
 We then implement a constructor. In this case, it simply consists of choosing the learning rate.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:impl_optimizer_gd}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:impl_optimizer_gd}}
 ```
 
 Next, we implement the `step` method required by the `Optimizer` trait:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:impl_optimizer_gd_step}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:impl_optimizer_gd_step}}
 ```
 
 This function updates each entry of `weights` by looping over the elements and applying the gradient descent update. We use elementwise operations because `Vec` doesn't provide built-in arithmetic methods. External crates such as `ndarray` or `nalgebra` could help write this more expressively.
@@ -42,19 +42,19 @@ This function updates each entry of `weights` by looping over the elements and a
 Now let’s implement gradient descent with momentum. The structure stores the learning rate, the momentum factor, and an internal velocity buffer:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:momentum_struct}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:momentum_struct}}
 ```
 
 We define the constructor by taking the required parameters, and we initialize the velocity to a zero vector:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:impl_optimizer_momentum}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:impl_optimizer_momentum}}
 ```
 
 The `step` function is slightly more complex, as it performs elementwise operations over the weights, velocity, and gradients:
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/traits_based/optimizers.rs:impl_optimizer_momentum_step}}
+{{#include ../../../crates/simple_optimizers_traits/src/optimizers.rs:impl_optimizer_momentum_step}}
 ```
 
 At this point, we've defined two optimizers using structs and a shared trait. To complete the module, we define a training loop that uses any optimizer implementing the trait.
@@ -64,7 +64,7 @@ At this point, we've defined two optimizers using structs and a shared trait. To
 We expose the training loop in `lib.rs` as the public API. The function `run_optimization` takes a generic `Optimizer`, a gradient function, an initial weight vector, and a maximum number of iterations.
 
 ```rust
-{{#include ../../../crates/simple_optimizers/src/lib.rs}}
+{{#include ../../../crates/simple_optimizers_traits/src/lib.rs:entry_point}}
 ```
 
 ### Example of usage
