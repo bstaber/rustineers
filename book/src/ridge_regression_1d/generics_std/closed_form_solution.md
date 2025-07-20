@@ -14,7 +14,7 @@ use std::iter::Sum;
 We start by defining a trait, `RidgeModel`, that describes the core behavior expected from any Ridge regression model. We tell the compiler that `F` must implement the traits `Float` and `Sum`.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:ridge_model_trait}}
+{{#include ../../../../crates/ridge_1d_generic/src/regressor.rs:ridge_model_trait}}
 ```
 
 ## Ridge estimator structure
@@ -22,13 +22,13 @@ We start by defining a trait, `RidgeModel`, that describes the core behavior exp
 We next define a Ridge structure as usual but using our generic type `F`. The model only stores the Ridge coefficient `beta`.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:gen_ridge_estimator}}
+{{#include ../../../../crates/ridge_1d_generic/src/regressor.rs:gen_ridge_estimator}}
 ```
 
 We implement the constructor as usual as well.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:gen_ridge_estimator_impl}}
+{{#include ../../../../crates/ridge_1d_generic/src/regressor.rs:gen_ridge_estimator_impl}}
 ```
 
 ## Fit and predict methods
@@ -36,7 +36,7 @@ We implement the constructor as usual as well.
 We can finally implement the trait `RidgeModel` for our `GenRidgeEstimator`.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/generics_std/gen_regressor.rs:gen_ridge_estimator_trait_impl}}
+{{#include ../../../../crates/ridge_1d_generic/src/regressor.rs:gen_ridge_estimator_trait_impl}}
 ```
 Notice that the trait bounds `<F: Float + Sum> RidgeModel<F>` are defined after the name of a `trait` or `struct`, or right next to an `impl`.
 

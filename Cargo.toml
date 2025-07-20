@@ -3,16 +3,11 @@ name = "rustineers"
 version = "0.1.0"
 edition = "2024"
 
-[workspace]
-members = [
-    "crates/simple_optimizers",
-    "crates/ridge_regression_1d",
-]
+readme = "README.md"
 
-[workspace.dependencies]
-num-traits = "0.2"
-ndarray = "0.16.1"
+[workspace]
+members = ["crates/*"]
 
 [dependencies]
-ridge_regression_1d = { path = "crates/ridge_regression_1d" }
-simple_optimizers = { path = "crates/simple_optimizers" }
+num-traits = "0.2"
+ndarray = "0.16.1"

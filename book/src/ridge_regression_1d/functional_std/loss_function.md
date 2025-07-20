@@ -9,19 +9,19 @@ Although the loss function by itself isn't really useful to solve the Ridge prob
 We now present a straightforward implementation of the **Ridge regression loss function**:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/loss_functions.rs:loss_function_naive}}
+{{#include ../../../../crates/ridge_1d_fn/src/loss_functions.rs:loss_function_naive}}
 ```
 
 In this example, we use two helper functions that we implement ourselves. A helper function for multiplying a vector by a scalar:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/utils.rs:mul_scalar_vec}}
+{{#include ../../../../crates/ridge_1d_fn/src/loss_functions.rs:mul_scalar_vec}}
 ```
 
 We also defined a helper that subtracts two slices element-wise:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/utils.rs:subtract_vectors}}
+{{#include ../../../../crates/ridge_1d_fn/src/loss_functions.rs:subtract_vectors}}
 ```
 
 Rather than using explicit loops, this implementation uses Rust’s iterator combinators, which the compiler optimizes into efficient code. This zero-cost abstraction keeps the code both readable and fast.
@@ -80,7 +80,7 @@ Let's implement the loss function in a more compact way. Instead of breaking the
 This is ideal for demonstrating the expressive power of Rust's iterator API, especially once you're comfortable with basic slice handling and `.map()` chaining.
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/loss_functions.rs:loss_function_line}}
+{{#include ../../../../crates/ridge_1d_fn/src/loss_functions.rs:loss_function_line}}
 ```
 
 This implementation computes the mean squared error in a single iteration, minimizing allocations and abstraction overhead. In particular:

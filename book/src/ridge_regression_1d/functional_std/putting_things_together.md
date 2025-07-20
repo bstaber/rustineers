@@ -4,28 +4,33 @@ To wrap up our 1D Ridge Regression example, let's see how all the parts fit toge
 
 ## Project layout
 
-Here’s the directory structure for our `ridge_regression_1d` crate:
+Here’s the directory structure for our `ridge_1d_fn` crate:
 
 ```text
-crates/ridge_regression_1d/
+crates/ridge_1d_fn/
 ├── Cargo.toml
 └── src
-    ├── analytical.rs          # Closed-form solution of the Ridge estimator
-    ├── grad_functions.rs      # Gradient of the loss
+    ├── estimator.rs           # Closed-form solution of the Ridge estimator
+    ├── gradient_descent.rs    # Gradient descent solution
     ├── lib.rs                 # Main entry point for the library
-    ├── loss_functions.rs      # Loss function implementations
-    ├── main.rs                # Binary entry point    
-    ├── optimizer.rs           # Gradient descent
-    └── utils.rs               # Utility functions (e.g., dot product)
+    └── loss_functions.rs      # Loss function implementations
 ```
 
-All the functions discussed in the previous sections are implemented in `analytical.rs`, `loss_functions.rs`, `grad_functions.rs`, `utils.rs`, and `optimizer.rs`. You can inspect each of these files below.
+All the functions discussed in the previous sections are implemented in `estimator.rs`, `loss_functions.rs`, `gradient_descent.rs`. You can inspect each of these files below.
 
 <details>
-<summary>Click to view <b>analytical.rs</b></summary>
+<summary>Click to view <b>estimator.rs</b></summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/analytical.rs}}
+{{#include ../../../../crates/ridge_1d_fn/src/estimator.rs}}
+```
+</details>
+
+<details>
+<summary>Click to view <b>gradient_descent.rs</b></summary>
+
+```rust
+{{#include ../../../../crates/ridge_1d_fn/src/gradient_descent.rs}}
 ```
 </details>
 
@@ -33,31 +38,15 @@ All the functions discussed in the previous sections are implemented in `analyti
 <summary>Click to view <b>loss_functions.rs</b></summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/loss_functions.rs}}
+{{#include ../../../../crates/ridge_1d_fn/src/loss_functions.rs}}
 ```
 </details>
 
 <details>
-<summary>Click to view <b>grad_functions.rs</b></summary>
+<summary>Click to view <b>lib.rs</b></summary>
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/grad_functions.rs}}
-```
-</details>
-
-<details>
-<summary>Click to view <b>optimizer.rs</b></summary>
-
-```rust
-{{#include ../../../../crates/ridge_regression_1d/src/optimizer.rs}}
-```
-</details>
-
-<details>
-<summary>Click to view <b>utils.rs</b></summary>
-
-```rust
-{{#include ../../../../crates/ridge_regression_1d/src/utils.rs}}
+{{#include ../../../../crates/ridge_1d_fn/src/lib.rs}}
 ```
 </details>
 
@@ -68,10 +57,11 @@ Note that the layout can be more complicated by introducing modules and submodul
 The `lib.rs` file is the entry point for the crate as a **library**. This is where we declare which modules (i.e., other `.rs` files) are exposed to the outside world.
 
 ```rust
-pub mod grad_functions;
+pub mod estimator;
+pub mod gradient_descent;
 pub mod loss_functions;
-pub mod optimizer;
-pub mod utils;
+
+pub use estimator::ridge_estimator;
 ```
 
 Each line tells Rust:
@@ -96,13 +86,13 @@ If `dot` is not marked as `pub`, you can’t use it outside `utils.rs`, even fro
 
 ## Importing between modules
 
-Rust requires explicit imports between modules. For example, in `optimizer.rs`, we want to use the `dot` function from `utils.rs`:
+Rust requires explicit imports between modules. For example, let's say we want to use the `dot` function from `gradient_descent.rs`. We can import it as follows:
 
 ```rust
 use crate::utils::dot;
 ```
 
-Here, `crate` refers to the root of this library crate `lib.rs`. If you check out one of the modules again (e.g., `loss_functions.rs`), you'll notice that's exactly what we are doing to import functions from other modules.
+Here, `crate` refers to the root of this library crate `lib.rs`.
 
 
 ## Example of usage
@@ -110,19 +100,11 @@ Here, `crate` refers to the root of this library crate `lib.rs`. If you check ou
 Now let's see how you could use the library from a binary crate:
 
 ```rust
-{{#include ../../../../crates/ridge_regression_1d/src/functional_std/mod.rs:run_demo}}
+use ridge_1d_fn::ridge_estimator;
+
+let x: Vec<f64> = vec![1.0, 2.0];
+let y: Vec<f64> = vec![0.1, 0.2];
+let lambda2 = 0.001;
+
+let beta = ridge_estimator(&x, &y, lambda2);
 ```
-
-You can run this with `cargo run`.
-
-## Summary
-
-This chapter demonstrated how to:
-
-- Implement the 1D Ridge regression in sample ways by relying on Rust standard library only.
-- Organize a crate into multiple source files (modules)
-- Use `pub` to expose functions
-- Import functions from other modules
-- Call everything together from a `main.rs`
-
-This is idiomatic Rust structure and prepares you to scale beyond toy examples while staying modular and readable.
