@@ -8,7 +8,7 @@ This chapter explores how to implement a small module of optimization algorithms
 
 The goal is to gradually expose the design space for writing numerical algorithms idiomatically in Rust.
 
-In each section, we implement a small create with the following layout:
+In each section, we implement a small crate with the following layout:
 
 ```text
 ├── Cargo.toml
