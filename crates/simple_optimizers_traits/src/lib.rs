@@ -2,8 +2,8 @@
 pub mod optimizers;
 use optimizers::Optimizer;
 
-pub fn run_optimization<O: Optimizer>(
-    optimizer: &mut O,
+pub fn run_optimization<Opt: Optimizer>(
+    optimizer: &mut Opt,
     weights: &mut [f64],
     grad_fn: impl Fn(&[f64]) -> Vec<f64>,
     num_steps: usize,

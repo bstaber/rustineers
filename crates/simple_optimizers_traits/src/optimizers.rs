@@ -96,3 +96,61 @@ impl Optimizer for Momentum {
     }
 }
 // ANCHOR_END: impl_optimizer_momentum_step
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_gradient_descent_constructor() {
+        let optimizer = GradientDescent::new(1e-3);
+        assert_eq!(1e-3, optimizer.learning_rate);
+    }
+
+    #[test]
+    fn test_step_gradient_descent() {
+        let mut opt = GradientDescent::new(0.1);
+        let mut weights = vec![1.0, 2.0, 3.0];
+        let grads = vec![0.5, 0.5, 0.5];
+
+        opt.step(&mut weights, &grads);
+
+        assert_eq!(weights, vec![0.95, 1.95, 2.95])
+    }
+
+    #[test]
+    fn test_momentum_constructor() {
+        let opt = Momentum::new(0.01, 0.9, 10);
+        match opt {
+            Momentum {
+                learning_rate,
+                momentum,
+                velocity,
+            } => {
+                assert_eq!(learning_rate, 0.01);
+                assert_eq!(momentum, 0.9);
+                assert_eq!(velocity.len(), 10);
+            }
+        }
+    }
+
+    #[test]
+    fn test_step_momentum() {
+        let mut opt = Momentum::new(0.1, 0.9, 3);
+        let mut weights = vec![1.0, 2.0, 3.0];
+        let grads = vec![0.5, 0.5, 0.5];
+
+        opt.step(&mut weights, &grads);
+        assert_eq!(weights, vec![0.95, 1.95, 2.95]);
+
+        opt.step(&mut weights, &grads);
+        assert!(
+            weights
+                .iter()
+                .zip(vec![0.855, 1.855, 2.855])
+                .all(|(a, b)| (*a - b).abs() < 1e-6)
+        );
+    }
+}
+// ANCHOR_END: tests
