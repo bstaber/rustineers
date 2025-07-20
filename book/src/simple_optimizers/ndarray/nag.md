@@ -1,18 +1,18 @@
-# Nesterov accelerated GD
+# Nesterov Accelerated Gradient
 
-The `AdaptiveAGD` struct implements a more advanced optimizer based on Nesterov's method and FISTA:
+This algorithm implements an accelerated method inspired by Nesterov’s momentum and the FISTA algorithm. The structure only stored the chosen step size.
 
 ```rust
-{{#include ../../../../crates/simple_optimizers_ndarray/src/optimizers.rs:AdaptiveAGD_struct}}
+{{#include ../../../../crates/simple_optimizers_ndarray/src/optimizers.rs:NAG_struct}}
 ```
 
 It has a constructor:
 
 ```rust
-{{#include ../../../../crates/simple_optimizers_ndarray/src/optimizers.rs:AdaptiveAGD_impl_new}}
+{{#include ../../../../crates/simple_optimizers_ndarray/src/optimizers.rs:NAG_impl_new}}
 ```
 
-This algorithm implements an accelerated method inspired by Nesterov’s momentum and the FISTA algorithm. The key idea is to introduce an extrapolation step between iterates, controlled by a sequence `t_k`. This helps the optimizer "look ahead" and converge faster in smooth convex problems.
+The key idea is to introduce an extrapolation step between iterates, controlled by a sequence `t_k`. This helps the optimizer "look ahead" and converge faster in smooth convex problems.
 
 Update steps:
 - Compute a temporary point `y_{k+1}` by taking a gradient step from `x_k`.
@@ -20,7 +20,7 @@ Update steps:
 - Combine `y_{k+1}` and `y_k` using a weighted average to get the new iterate `x_{k+1}`.
 
 ```rust
-{{#include ../../../../crates/simple_optimizers_ndarray/src/optimizers.rs:AdaptiveAGD_impl_run}}
+{{#include ../../../../crates/simple_optimizers_ndarray/src/optimizers.rs:NAG_impl_run}}
 ```
 
 Some notes:

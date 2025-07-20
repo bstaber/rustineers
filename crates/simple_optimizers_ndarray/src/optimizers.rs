@@ -60,24 +60,24 @@ impl Optimizer for GD {
 }
 // ANCHOR_END: impl_gd_run
 
-/// Accelerated Gradient Descent (AGD) with classical momentum.
+/// Gradient descent with classical momentum.
 ///
 /// Combines the previous velocity with the current gradient
 /// to speed up convergence in convex problems.
 // ANCHOR: struct_agd
-pub struct AGD {
+pub struct Momentum {
     step_size: f64,
     momentum: f64,
 }
 // ANCHOR_END: struct_agd
 
-/// Create a new AGD optimizer.
+/// Create a new Momentum optimizer.
 ///
 /// # Arguments
 /// - `step_size`: the learning rate.
 /// - `momentum`: the momentum coefficient (typically between 0.8 and 0.99).
 // ANCHOR: impl_agd_new
-impl AGD {
+impl Momentum {
     pub fn new(step_size: f64, momentum: f64) -> Self {
         Self {
             step_size,
@@ -95,7 +95,7 @@ impl AGD {
 /// w ← w + v
 /// ```
 // ANCHOR: impl_agd_run
-impl Optimizer for AGD {
+impl Optimizer for Momentum {
     fn run(
         &self,
         weights: &mut Array1<f64>,
@@ -128,15 +128,15 @@ impl Optimizer for AGD {
 /// References:
 /// - Beck & Teboulle (2009), FISTA (but without proximal operator)
 /// - Nesterov's accelerated gradient (original formulation)
-// ANCHOR: AdaptiveAGD_struct
-pub struct AdaptiveAGD {
+// ANCHOR: NAG_struct
+pub struct NAG {
     step_size: f64,
 }
-// ANCHOR_END: AdaptiveAGD_struct
+// ANCHOR_END: NAG_struct
 
-// ANCHOR: AdaptiveAGD_impl_new
-impl AdaptiveAGD {
-    /// Create a new instance of AdaptiveAGD with a given step size.
+// ANCHOR: NAG_impl_new
+impl NAG {
+    /// Create a new instance of NAG with a given step size.
     ///
     /// The step size should be 1 / L, where L is the Lipschitz constant
     /// of the gradient of the objective function.
@@ -144,7 +144,7 @@ impl AdaptiveAGD {
         Self { step_size }
     }
 }
-// ANCHOR_END: AdaptiveAGD_impl_new
+// ANCHOR_END: NAG_impl_new
 
 /// Run the optimizer for `n_steps` iterations.
 ///
@@ -160,8 +160,8 @@ impl AdaptiveAGD {
 /// t_{k+1} = (1 + sqrt(1 + 4 t_k²)) / 2
 /// x_{k+1} = y_{k+1} + ((t_k - 1)/t_{k+1}) * (y_{k+1} - y_k)
 ///
-// ANCHOR: AdaptiveAGD_impl_run
-impl Optimizer for AdaptiveAGD {
+// ANCHOR: NAG_impl_run
+impl Optimizer for NAG {
     fn run(
         &self,
         weights: &mut Array1<f64>,
@@ -192,4 +192,58 @@ impl Optimizer for AdaptiveAGD {
         }
     }
 }
-// ANCHOR_END: AdaptiveAGD_impl_run
+// ANCHOR_END: NAG_impl_run
+
+// ANCHOR: tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use ndarray::array;
+
+    #[test]
+    fn test_gradient_descent_constructor() {
+        let optimizer = GD::new(1e-3);
+        assert_eq!(1e-3, optimizer.step_size);
+    }
+
+    #[test]
+    fn test_step_gradient_descent() {
+        let opt = GD::new(0.1);
+        let mut weights = array![1.0, 2.0, 3.0];
+        let grad_fn = |_w: &Array1<f64>| array![0.5, 0.5, 0.5];
+        opt.run(&mut weights, grad_fn, 1);
+
+        assert_eq!(weights, array![0.95, 1.95, 2.95])
+    }
+
+    #[test]
+    fn test_momentum_constructor() {
+        let opt = Momentum::new(0.01, 0.9);
+        assert_eq!(
+            opt.step_size, 0.01,
+            "Expected step size to be 0.01 but got {}",
+            opt.step_size
+        );
+        assert_eq!(
+            opt.momentum, 0.9,
+            "Expected momentum to be 0.9 but got {}",
+            opt.momentum
+        );
+    }
+
+    #[test]
+    fn test_step_momentum() {
+        let opt = Momentum::new(0.1, 0.9);
+        let mut weights = array![1.0, 2.0, 3.0];
+        let grad_fn = |_w: &Array1<f64>| array![0.5, 0.5, 0.5];
+
+        opt.run(&mut weights, grad_fn, 2);
+        assert!(
+            weights
+                .iter()
+                .zip(array![0.855, 1.855, 2.855])
+                .all(|(a, b)| (*a - b).abs() < 1e-6)
+        );
+    }
+}
+// ANCHOR_END: tests
