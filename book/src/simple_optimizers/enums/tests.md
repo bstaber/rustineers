@@ -15,7 +15,7 @@ We implemented a few tests to check:
 - That repeated calls to `step` update the internal state correctly (e.g., momentum's velocity)
 
 ```rust
-{{#include ../../../crates/simple_optimizers_enums/src/optimizers.rs:tests}}
+{{#include ../../../../crates/simple_optimizers_enums/src/optimizers.rs:tests}}
 ```
 
 Some notes:
