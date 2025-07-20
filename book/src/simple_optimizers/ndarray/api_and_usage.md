@@ -16,7 +16,7 @@ $$
 
 We expect convergence toward the vector `[3.0, 3.0, 3.0]`.
 
-## Using Gradient Descent
+## Using gradient descent
 
 ```rust
 use optimizers::GD;
@@ -33,7 +33,7 @@ fn main() {
 }
 ```
 
-## Using Momentum
+## Using momentum
 
 ```rust
 use optimizers::Momentum;
