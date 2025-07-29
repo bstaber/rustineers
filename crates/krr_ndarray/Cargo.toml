@@ -7,3 +7,4 @@ edition = "2024"
 rustineers = { path = "../../" }
 ndarray = "0.15.2"
 ndarray-linalg = { version = "0.16", features = ["openblas-static"] }
+thiserror = "1.0"
