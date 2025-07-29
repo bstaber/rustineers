@@ -19,15 +19,15 @@ impl<K: Kernel> KRRModel<K> {
         }
     }
 
-    pub fn fit(&mut self, x_train: Array2<f64>, y_train: Array1<f64>) {
+    pub fn fit(&mut self, x_train: Array2<f64>, y_train: Array1<f64>) -> Result<(), String> {
         let n: usize = x_train.nrows();
-        assert_eq!(
-            n,
-            y_train.len(),
-            "x_train and y_train must have the same lengths, got {} and {}",
-            n,
-            y_train.len()
-        );
+        if y_train.len() != n {
+            return Err(format!(
+                "x_train and y_train must have the same number of samples, got {} and {}",
+                n,
+                y_train.len()
+            ));
+        }
 
         let mut k_train: Array2<f64> = Array::zeros((n, n));
         for i in 0..n {
@@ -40,10 +40,14 @@ impl<K: Kernel> KRRModel<K> {
 
         let identity_n = Array2::eye(n);
         let a: Array2<f64> = k_train + self.lambda * identity_n;
-        let alpha = a.solve_into(y_train).unwrap();
+        let alpha = a
+            .solve_into(y_train)
+            .map_err(|e| format!("Matrix solve failed: {e}"))?;
 
         self.x_train = Some(x_train);
         self.alpha = Some(alpha);
+
+        Ok(())
     }
 
     pub fn predict(&self, x_test: &Array2<f64>) -> Result<Array1<f64>, String> {
@@ -98,7 +102,8 @@ mod tests {
         let x_train: Array2<f64> = array![[1.0, 2.0, 3.0], [0.1, 0.2, 0.3]];
         let y_train: Array1<f64> = array![0.9, 0.6];
 
-        model.fit(x_train, y_train);
+        let res = model.fit(x_train, y_train);
+        assert!(res.is_ok());
         assert!(
             model.alpha.is_some(),
             "alpha should not be None if the model has been fitted"
