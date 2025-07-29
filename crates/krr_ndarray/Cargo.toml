@@ -5,5 +5,5 @@ edition = "2024"
 
 [dependencies]
 rustineers = { path = "../../" }
-ndarray = "0.16.1"
-ndarray-linalg = "0.16"
+ndarray = "0.15.2"
+ndarray-linalg = { version = "0.16", features = ["openblas-static"] }
