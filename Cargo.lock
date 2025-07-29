@@ -675,10 +675,6 @@ dependencies = [
 [[package]]
 name = "rustineers"
 version = "0.1.0"
-dependencies = [
- "ndarray 0.16.1",
- "num-traits",
-]
 
 [[package]]
 name = "rustix"
