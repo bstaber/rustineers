@@ -39,7 +39,7 @@
         - [API and usage](simple_optimizers/ndarray/api_and_usage.md)
         - [Tests](simple_optimizers/ndarray/tests.md)
 - [Kernel Ridge regression 🦀🦀](kernel_ridge_regression/README.md)
-    - [Kernel trait](kernel_ridge_regression/kernel_trait.md)
+    - [Kernel module](kernel_ridge_regression/kernel_trait.md)
     - [Gram matrix](kernel_ridge_regression/gram_matrix.md)
     - [KRR model](kernel_ridge_regression/krr_model.md)
     - [Hyperparameter tuning](kernel_ridge_regression/hparams_tuning.md)
