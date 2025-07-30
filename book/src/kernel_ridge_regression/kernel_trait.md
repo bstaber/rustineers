@@ -29,7 +29,7 @@ This trait enables polymorphism: any kernel function that implements `Kernel` ca
 To provide a concrete implementation of the `Kernel` trait, the module defines the `RBFKernel` struct:
 
 ```rust
-#[derive[(Clone)]]
+#[derive(Clone)]
 pub struct RBFKernel {
     pub lengthscale: f64,
 }

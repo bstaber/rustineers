@@ -1,7 +1,7 @@
 
 # Hyperparameter tuning with LOO-CV
 
-This section focuses on hyperparameter selection for Kernel Ridge Regression (KRR), specifically tuning the kernel lengthscale using Leave-One-Out Cross-Validation (LOO-CV). We implement two key functions in the `model_selection.rs` module:
+This section focuses on hyperparameter selection for tuning the kernel lengthscale using Leave-One-Out Cross-Validation (LOO-CV). We implement two key functions in the `model_selection.rs` module:
 
 - `loo_cv_error`: computes the LOO-CV error for a given model and training dataset.
 - `tune_lengthscale`: evaluates multiple candidate lengthscales and returns the one with the lowest LOO-CV error.
@@ -30,7 +30,7 @@ The `loo_cv_error` function implements this logic:
 
 It returns the mean squared error over the training set based on the LOO-CV formula. 
 
-Note that we got a bit lazzy here:
+Note that we got a bit lazy here:
 
 * We use the `.expect()` method to raise an exception if the inversion fails. This will make the code crash instead of making the function return an error, like we did with our `KRRFitError` and `KRRPredictError` enums.
 * We re-compute the Gram matrix whereas it could be stored within the `KRRModel` like we did for `alpha` and `x_train`.
@@ -48,8 +48,6 @@ takes in a list of candidate lengthscales, fits a model for each, and selects th
 1. The `RBFKernel` struct to instantiate kernels with varying lengthscales.
 2. The `KRRModel::fit` method to train each model.
 3. The `loo_cv_error` function to evaluate them.
-
-This approach is computationally efficient and ensures a fair comparison among different kernel parameters.
 
 ## Unit test
 

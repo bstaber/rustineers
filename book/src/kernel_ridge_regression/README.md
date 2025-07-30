@@ -2,15 +2,15 @@
 
 In this chapter, we implement [Kernel Ridge Regression (KRR)](https://teazrq.github.io/SMLR/kernel-ridge-regression.html) in Rust using the `ndarray` and `ndarray-linalg` crates. The implementation is broken into the following sections:
 
-* In the [`Kernel` module section](kernel_trait.md), we define a Kernel trait and implement the radial basis function (RBF) kernel.
+* In the [Kernel module section](kernel_trait.md), we define a `Kernel` trait and implement the radial basis function (RBF) kernel.
 
 * In the [Gram matrix section](gram_matrix.md), we construct the symmetric Gram matrix needed to solve the KRR problem using `Array2` and `ArrayView1`.
 
 * In the [KRR model section](krr_model.md), we define the `KRRModel` struct and its constructor, making the model generic over any type that implements the Kernel trait.
 
-* In the [fit function section](krr_fit.md), we implement the logic for training the model, including matrix assembly, regularization, and linear system solving. We introduce a custom error enum KRRFitError to manage common issues.
+* In the [fit function section](krr_fit.md), we implement the logic for training the model, including matrix assembly, regularization, and linear system solving. We introduce a custom error enum `KRRFitError` to manage common issues.
 
-* In the [predict function section](krr_predict.md), we implement inference for new samples and introduce the KRRPredictError enum to handle the unfitted model case.
+* In the [predict function section](krr_predict.md), we implement inference for new samples and introduce the `KRRPredictError` enum to handle the unfitted model case.
 
 * In the [hyperparameter tuning section](hparams_tuning.md), we implement leave-one-out cross-validation (LOOCV) to select a good value for the kernel’s lengthscale.
 

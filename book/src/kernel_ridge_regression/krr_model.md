@@ -12,6 +12,10 @@ This section describes the definition of the `KRRModel` struct and its construct
 
 ## The `KRRModel` struct
 
+```rust
+{{#include ../../../crates/krr_ndarray/src/model.rs:KRRModel_struct}}
+```
+
 The `KRRModel` struct represents a kernel ridge regression model parameterized by a kernel type `K` that implements the `Kernel` trait. It includes the following fields:
 
 - `kernel`: an instance of the kernel function to be used (e.g., RBF kernel).
@@ -26,14 +30,7 @@ These fields are marked `pub` depending on whether they are exposed to the user.
 The `new` method is a constructor for creating a new instance of the model. It takes a kernel instance and a regularization parameter as arguments, and initializes an unfitted model:
 
 ```rust
-pub fn new(kernel: K, lambda: f64) -> Self {
-    Self {
-        kernel,
-        lambda,
-        x_train: None,
-        alpha: None,
-    }
-}
+{{#include ../../../crates/krr_ndarray/src/model.rs:KRRModel_new}}
 ```
 
 ## Unit test

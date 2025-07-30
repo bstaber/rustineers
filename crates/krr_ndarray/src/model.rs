@@ -3,13 +3,16 @@ use crate::kernel::Kernel;
 use ndarray::{Array, Array1, Array2};
 use ndarray_linalg::Solve;
 
+//ANCHOR: KRRModel_struct
 pub struct KRRModel<K: Kernel> {
     pub kernel: K,
     pub lambda: f64,
     pub x_train: Option<Array2<f64>>,
     pub alpha: Option<Array1<f64>>,
 }
+//ANCHOR_END: KRRModel_struct
 
+//ANCHOR: KRRModel_new
 impl<K: Kernel> KRRModel<K> {
     pub fn new(kernel: K, lambda: f64) -> Self {
         Self {
@@ -20,6 +23,7 @@ impl<K: Kernel> KRRModel<K> {
         }
     }
 }
+//ANCHOR_END: KRRModel_new
 
 //ANCHOR: fit_function
 impl<K: Kernel> KRRModel<K> {
