@@ -19,7 +19,10 @@ impl<K: Kernel> KRRModel<K> {
             alpha: None,
         }
     }
+}
 
+//ANCHOR: fit_function
+impl<K: Kernel> KRRModel<K> {
     fn _fit(&mut self, x_train: Array2<f64>, y_train: Array1<f64>) -> Result<(), KRRFitError> {
         let n: usize = y_train.len();
         let mut k_train: Array2<f64> = Array::zeros((n, n));
@@ -63,7 +66,11 @@ impl<K: Kernel> KRRModel<K> {
             }
         }
     }
+}
+//ANCHOR_END: fit_function
 
+//ANCHOR: predict_function
+impl<K: Kernel> KRRModel<K> {
     pub fn predict(&self, x_test: &Array2<f64>) -> Result<Array1<f64>, KRRPredictError> {
         let alpha = self.alpha.as_ref().ok_or(KRRPredictError::NotFitted)?;
         let x_train = self.x_train.as_ref().ok_or(KRRPredictError::NotFitted)?;
@@ -81,6 +88,7 @@ impl<K: Kernel> KRRModel<K> {
         Ok(y_pred)
     }
 }
+//ANCHOR_END: predict_function
 
 #[cfg(test)]
 mod tests {

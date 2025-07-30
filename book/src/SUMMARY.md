@@ -42,4 +42,6 @@
     - [Kernel module](kernel_ridge_regression/kernel_trait.md)
     - [Gram matrix](kernel_ridge_regression/gram_matrix.md)
     - [KRR model](kernel_ridge_regression/krr_model.md)
+    - [Fit function](kernel_ridge_regression/krr_fit.md)
+    - [Predict function](kernel_ridge_regression/krr_predict.md)
     - [Hyperparameter tuning](kernel_ridge_regression/hparams_tuning.md)

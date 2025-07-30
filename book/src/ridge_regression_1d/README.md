@@ -1,6 +1,6 @@
 # Ridge regression 1D
 
-Here, we implement one-dimensional Ridge Regression*in several styles, using increasing levels of abstraction. It's designed as a learning path for beginners, and focuses on writing idiomatic, clear, and type-safe Rust code. We focus on minimizing this loss function:
+Here, we implement one-dimensional Ridge Regression in several styles, using increasing levels of abstraction. It's designed as a learning path for beginners, and focuses on writing idiomatic, clear, and type-safe Rust code. We focus on minimizing this loss function:
 
 $$
 \mathcal{L}(\beta) = \frac{1}{n} \sum_{i=1}^n (y_i - \beta x_i)^2 + \lambda \beta^2\,,
