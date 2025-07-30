@@ -4,6 +4,7 @@ pub trait Kernel {
     fn compute(&self, x: ArrayView1<f64>, y: ArrayView1<f64>) -> f64;
 }
 
+#[derive(Clone)]
 pub struct RBFKernel {
     pub lengthscale: f64,
 }

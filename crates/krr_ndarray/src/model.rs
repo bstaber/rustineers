@@ -6,8 +6,8 @@ use ndarray_linalg::Solve;
 pub struct KRRModel<K: Kernel> {
     pub kernel: K,
     pub lambda: f64,
-    x_train: Option<Array2<f64>>,
-    alpha: Option<Array1<f64>>,
+    pub x_train: Option<Array2<f64>>,
+    pub alpha: Option<Array1<f64>>,
 }
 
 impl<K: Kernel> KRRModel<K> {

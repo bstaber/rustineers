@@ -29,10 +29,13 @@ This trait enables polymorphism: any kernel function that implements `Kernel` ca
 To provide a concrete implementation of the `Kernel` trait, the module defines the `RBFKernel` struct:
 
 ```rust
+#[derive[(Clone)]]
 pub struct RBFKernel {
     pub lengthscale: f64,
 }
 ```
+
+We will need the `Clone` trait later on for our cross validation technique.
 
 The `lengthscale` parameter controls how quickly the similarity between two points decays with distance. A smaller lengthscale produces more localized kernels, while a larger one results in smoother, more global effects.
 
