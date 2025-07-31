@@ -1,5 +1,11 @@
 - [Introduction](INTRODUCTION.md)
     - [Cargo 101](CARGO_TUTORIAL.md)
+    - [Digests]()
+        - [Functions](digests/functions.md)
+        - [Structures and traits]()
+        - [Enums]()
+        - [Error handling]()
+        - [Lint, check, test]()
 
 - [1D Ridge regression 🦀](ridge_regression_1d/README.md)
     - [Functional](ridge_regression_1d/functional_std/motivation.md)
