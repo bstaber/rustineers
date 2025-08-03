@@ -8,6 +8,15 @@ pub enum ReferenceElement {
 }
 
 impl ReferenceElement {
+    pub fn num_nodes(&self) -> usize {
+        match self {
+            ReferenceElement::Tri3 => 3,
+            ReferenceElement::Quad4 => 4,
+        }
+    }
+}
+
+impl ReferenceElement {
     pub fn shape_functions(&self, local_coordinates: &Point2<f64>) -> Vec<f64> {
         match self {
             ReferenceElement::Tri3 => {
