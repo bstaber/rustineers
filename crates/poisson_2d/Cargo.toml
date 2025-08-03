@@ -5,4 +5,6 @@ edition = "2024"
 
 [dependencies]
 rustineers = { path = "../../" }
-nalgebra = "0.32"
+nalgebra = "0.33"
+nalgebra-sparse = "0.10"
+nalgebra-sparse-linalg = "0.1.9"
