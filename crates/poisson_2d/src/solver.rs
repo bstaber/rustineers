@@ -167,10 +167,100 @@ where
 }
 
 /// Function that applies Dirichlet boundary conditions to the dense FEM system.
-pub fn _apply_dirichlet_dense() {}
+pub fn _apply_dirichlet_dense<G>(
+    a: &mut DMatrix<f64>,
+    b: &mut DVector<f64>,
+    boundary_nodes: &[usize],
+    mesh: &Mesh2d,
+    g: G,
+) where
+    G: Fn(f64, f64) -> f64,
+{
+    // Compute the boundary conditions values at each boundary node
+    let mut values = Vec::with_capacity(boundary_nodes.len());
+    for &i in boundary_nodes {
+        let v = &mesh.vertices()[i];
+        values.push((i, g(v.x, v.y)));
+    }
+    let n = a.nrows();
+
+    // For each boundary node j, update rhs: b_i -= a_ij * g_j for all i
+    for &(j, g_j) in &values {
+        for i in 0..n {
+            b[i] -= a[(i, j)] * g_j;
+        }
+    }
+
+    // Zero out rows and columns and set diagonal
+    for &(j, g_j) in &values {
+        for k in 0..n {
+            a[(j, k)] = 0.0;
+            a[(k, j)] = 0.0;
+        }
+        a[(j, j)] = 1.0;
+        b[j] = g_j;
+    }
+}
 
 /// Function that applies Dirichlet boundary conditions to the sparse FEM system.
-pub fn _apply_dirichlet_sparse() {}
+pub fn apply_dirichlet_sparse<G>(
+    a: &mut CsrMatrix<f64>,
+    b: &mut DVector<f64>,
+    boundary_nodes: &[usize],
+    mesh: &Mesh2d,
+    g: G,
+) where
+    G: Fn(f64, f64) -> f64,
+{
+    // Compute the boundary conditions values at each boundary node
+    let mut bc_vals = Vec::with_capacity(boundary_nodes.len());
+    for &j in boundary_nodes {
+        let v = &mesh.vertices()[j];
+        bc_vals.push((j, g(v.x, v.y)));
+    }
+
+    let n = a.nrows();
+
+    for &(j, g_j) in &bc_vals {
+        // For each boundary node j, update rhs: b_i -= a_ij * g_j for all i
+
+        for i in 0..n {
+            let row = a.row(i);
+            let cols = row.col_indices();
+            let vals = row.values();
+            if let Some(pos) = cols.iter().position(|&c| c == j) {
+                b[i] -= vals[pos] * g_j;
+            }
+        }
+
+        // Zero out row j
+        for v in a.row_mut(j).values_mut() {
+            *v = 0.0;
+        }
+
+        // Zero out column j to preserve symmetry
+        // We first collect the positions
+        let mut to_zero: Vec<(usize, usize)> = Vec::new();
+        for i in 0..n {
+            let row_i = a.row(i);
+            let cols = row_i.col_indices();
+            if let Some(pos) = cols.iter().position(|&c| c == j) {
+                to_zero.push((i, pos));
+            }
+        }
+        // Zero out the collected positions
+        for (i, pos) in to_zero {
+            a.row_mut(i).values_mut()[pos] = 0.0;
+        }
+
+        // Set diagonal to 1.0
+        if let Some(pos) = a.row(j).col_indices().iter().position(|&c| c == j) {
+            a.row_mut(j).values_mut()[pos] = 1.0;
+        }
+
+        b[j] = g_j;
+    }
+}
 
 /// Function that solves the dense FEM system.
 pub fn _solve_dense(a: &DMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
