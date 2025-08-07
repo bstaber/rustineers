@@ -3,7 +3,9 @@ use nalgebra::{Matrix2, Point2, Vector2};
 
 #[derive(Debug, Clone)]
 pub enum ReferenceElement {
+    /// 3-node reference triangle
     Tri3,
+    /// 4-node reference quadrangle
     Quad4,
 }
 
