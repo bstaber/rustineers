@@ -45,3 +45,4 @@
     - [Fit function](kernel_ridge_regression/krr_fit.md)
     - [Predict function](kernel_ridge_regression/krr_predict.md)
     - [Hyperparameter tuning](kernel_ridge_regression/hparams_tuning.md)
+- [2D Poisson FEM solver 🦀🦀]()
