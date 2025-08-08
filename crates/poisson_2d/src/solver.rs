@@ -167,7 +167,7 @@ where
 }
 
 /// Function that applies Dirichlet boundary conditions to the dense FEM system.
-pub fn _apply_dirichlet_dense<G>(
+pub fn apply_dirichlet_dense<G>(
     a: &mut DMatrix<f64>,
     b: &mut DVector<f64>,
     boundary_nodes: &[usize],
@@ -263,12 +263,51 @@ pub fn apply_dirichlet_sparse<G>(
 }
 
 /// Function that solves the dense FEM system.
-pub fn _solve_dense(a: &DMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
+pub fn dense_solver(a: &DMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
     let chol = a.clone().cholesky()?;
     Some(chol.solve(b))
 }
 
 /// Function that solves the sparse FEM system.
-pub fn _solve_sparse(a: &CsrMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
+pub fn sparse_solver(a: &CsrMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
     conjugate_gradient::solve(a, b, 1000, 1e-10)
+}
+
+/// Dense Poisson solver
+pub fn assemble_and_solve_dense<F>(
+    mesh: &Mesh2d,
+    boundary_nodes: &[usize],
+    boundary_fn: F,
+    source_fn: F,
+) -> DVector<f64>
+where
+    F: Fn(f64, f64) -> f64,
+{
+    // Assemble dense system
+    let (mut a, mut b) = assemble_system_dense(mesh, &source_fn);
+
+    // Apply BCs
+    apply_dirichlet_dense(&mut a, &mut b, boundary_nodes, mesh, boundary_fn);
+
+    // Solve linear system
+    dense_solver(&a, &b).expect("failed to solve")
+}
+
+pub fn assemble_and_solve_sparse<F>(
+    mesh: &Mesh2d,
+    boundary_nodes: &[usize],
+    boundary_fn: F,
+    source_fn: F,
+) -> DVector<f64>
+where
+    F: Fn(f64, f64) -> f64,
+{
+    // Assemble sparse system
+    let (mut a, mut b) = assemble_system_sparse(mesh, &source_fn);
+
+    // Apply BCs
+    apply_dirichlet_sparse(&mut a, &mut b, boundary_nodes, mesh, boundary_fn);
+
+    // Solve linear system
+    sparse_solver(&a, &b).expect("failed to solve")
 }
