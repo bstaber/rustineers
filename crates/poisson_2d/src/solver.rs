@@ -336,4 +336,24 @@ mod tests {
         assert_eq!(a.nrows(), 4);
         assert_eq!(b.len(), 4);
     }
+
+    #[test]
+    fn test_assemble_system_sparse() {
+        let vertices = vec![
+            Point2::new(0.0, 0.0),
+            Point2::new(1.0, 0.0),
+            Point2::new(1.0, 1.0),
+            Point2::new(0.0, 1.0),
+        ];
+        let elements = vec![Element {
+            indices: vec![0, 1, 2, 3],
+        }];
+        let mesh = Mesh2d::new(vertices, elements, ElementType::Q1);
+
+        let source_fn = |x: f64, y: f64| x + y;
+        let (a, b) = assemble_system_sparse(&mesh, &source_fn);
+
+        assert_eq!(a.nrows(), 4);
+        assert_eq!(b.len(), 4);
+    }
 }
