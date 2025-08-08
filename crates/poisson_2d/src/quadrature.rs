@@ -48,3 +48,22 @@ impl QuadRule {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_triangle_quadrature() {
+        let rule = QuadRule::triangle(2);
+        assert_eq!(rule.points.len(), 3);
+        assert_eq!(rule.weights.len(), 3);
+    }
+
+    #[test]
+    fn test_quadrilateral_quadrature() {
+        let rule = QuadRule::quadrilateral(2);
+        assert_eq!(rule.points.len(), 4);
+        assert_eq!(rule.weights.len(), 4);
+    }
+}

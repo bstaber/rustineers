@@ -98,3 +98,24 @@ impl ReferenceElement {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_reference_element() {
+        let tri3 = ReferenceElement::Tri3;
+        let quad4 = ReferenceElement::Quad4;
+
+        assert_eq!(tri3.num_nodes(), 3);
+        assert_eq!(quad4.num_nodes(), 4);
+
+        let local_coords = Point2::new(0.5, 0.5);
+        let tri_shape_funcs = tri3.shape_functions(&local_coords);
+        let quad_shape_funcs = quad4.shape_functions(&local_coords);
+
+        assert_eq!(tri_shape_funcs.len(), 3);
+        assert_eq!(quad_shape_funcs.len(), 4);
+    }
+}
