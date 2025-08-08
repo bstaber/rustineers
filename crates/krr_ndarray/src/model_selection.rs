@@ -55,11 +55,11 @@ pub fn tune_lengthscale<K: Kernel + Clone>(
             continue;
         }
 
-        if let Ok(err) = loo_cv_error(&model) {
-            if err < best_error {
-                best_error = err;
-                best_kernel = Some(kernel);
-            }
+        if let Ok(err) = loo_cv_error(&model)
+            && err < best_error
+        {
+            best_error = err;
+            best_kernel = Some(kernel);
         }
     }
 
