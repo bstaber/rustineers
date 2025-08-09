@@ -14,10 +14,12 @@ pub use mesh::Mesh2d;
 pub use nalgebra::DVector;
 
 /// Enum representing the type of solver to use
+// ANCHOR: solver_type
 pub enum SolverType {
     Dense,
     Sparse,
 }
+// ANCHOR_END: solver_type
 
 /// Helper function for solving the 2D Poisson problem
 ///
@@ -31,6 +33,7 @@ pub enum SolverType {
 ///
 /// Returns:
 /// - A vector containing the solution at the mesh nodes.
+// ANCHOR: solve_poisson_2d
 pub fn solve_poisson_2d<F>(
     mesh: &Mesh2d,
     boundary_nodes: &[usize],
@@ -48,3 +51,4 @@ where
         }
     }
 }
+// ANCHOR_END: solve_poisson_2d
