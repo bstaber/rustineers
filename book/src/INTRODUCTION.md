@@ -46,14 +46,13 @@ Here's an unordered list of examples of topics that could be added to the book:
 
 - [x] 1D Ridge regression.
 - [x] Simple first-order gradient descent algorithms.
-- [ ] Multivariate regression algorithms (Ridge, Lasso, Elastic-net).
+- [x] Kernel methods: multivariate kernel Ridge regression.
+- [x] Scientific computing: Solving the 2D Poisson problem with the finite element method.
 - [ ] Classification algorithms: logistic regression.
 - [ ] Some clustering algorithms: K-means, Gaussian mixtures.
 - [ ] Some MCMC algorithms: MH, LMC, MALA.
 - [ ] Numerical methods for solving ODEs: Euler, Runge-Kutta.
-- [ ] Numerical methods for solving PDEs: 1D heat equation, 2D Poisson equation.
 - [ ] Optimization algorithms: gradient-based, derivative-free.
-- [ ] Kernel methods: kernel Ridge, Gaussian processes, etc.
 - [ ] Divergences and distances for probability distributions: KL divergence, total variation, Wasserstein.
 
 Let us know if you have other ideas or if you want to improve any existing chapter.
