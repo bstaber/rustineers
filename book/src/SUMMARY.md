@@ -49,5 +49,5 @@
     - [User interface](poisson2d/user_interface.md)
     - [Mesh module](poisson2d/mesh_module.md)
     - [Element module](poisson2d/element_module.md)
-    - [Quadrature module]()
+    - [Quadrature module](poisson2d/quad_rule_module.md)
     - [Solver module]()

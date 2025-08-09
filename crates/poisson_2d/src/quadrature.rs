@@ -1,11 +1,14 @@
 use nalgebra::Point2;
 
+// ANCHOR: quad_rule_struct
 #[derive(Clone, Debug)]
 pub struct QuadRule {
     pub points: Vec<Point2<f64>>,
     pub weights: Vec<f64>,
 }
+// ANCHOR_END: quad_rule_struct
 
+// ANCHOR: quad_rule_impl
 impl QuadRule {
     pub fn triangle(order: usize) -> Self {
         match order {
@@ -48,7 +51,9 @@ impl QuadRule {
         }
     }
 }
+// ANCHOR_END: quad_rule_impl
 
+// ANCHOR: tests
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -67,3 +72,4 @@ mod tests {
         assert_eq!(rule.weights.len(), 4);
     }
 }
+// ANCHOR_END: tests
