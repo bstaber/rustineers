@@ -47,7 +47,7 @@
     - [Hyperparameter tuning](kernel_ridge_regression/hparams_tuning.md)
 - [2D Poisson FEM solver 🦀🦀](poisson2d/README.md)
     - [User interface](poisson2d/user_interface.md)
-    - [Mesh module]()
+    - [Mesh module](poisson2d/mesh_module.md)
     - [Element module]()
     - [Quadrature module]()
     - [Solver module]()

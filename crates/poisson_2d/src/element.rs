@@ -1,6 +1,23 @@
 //! Module that implements two classical finite element types: tri3 and quad4.
 use nalgebra::{Matrix2, Point2, Vector2};
 
+// ANCHOR: elements
+#[derive(Clone, PartialEq, Eq, Debug)]
+pub enum ElementType {
+    /// 3-node triangle
+    P1,
+    /// 4-node quadrangle
+    Q1,
+}
+
+/// An element stores a vector containing its global indices.
+#[derive(Clone, Debug)]
+pub struct Element {
+    pub indices: Vec<usize>,
+}
+// ANCHOR_END: elements
+
+// ANCHOR: reference_elements
 #[derive(Debug, Clone)]
 pub enum ReferenceElement {
     /// 3-node reference triangle
@@ -17,7 +34,9 @@ impl ReferenceElement {
         }
     }
 }
+// ANCHOR_END: reference_elements
 
+// ANCHOR: reference_elements_impl
 impl ReferenceElement {
     pub fn shape_functions(&self, local_coordinates: &Point2<f64>) -> Vec<f64> {
         match self {
@@ -98,7 +117,9 @@ impl ReferenceElement {
         }
     }
 }
+// ANCHOR_END: reference_elements_impl
 
+// ANCHOR: tests
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -119,3 +140,4 @@ mod tests {
         assert_eq!(quad_shape_funcs.len(), 4);
     }
 }
+// ANCHOR_END: tests

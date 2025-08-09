@@ -1,5 +1,5 @@
-use crate::element::ReferenceElement;
-use crate::mesh::{ElementType, Mesh2d};
+use crate::element::{ElementType, ReferenceElement};
+use crate::mesh::Mesh2d;
 use crate::quadrature::QuadRule;
 use nalgebra::{DMatrix, DVector, Point2, Vector2};
 use nalgebra_sparse::{CooMatrix, CsrMatrix};
@@ -315,7 +315,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::mesh::Element;
+    use crate::element::Element;
 
     #[test]
     fn test_assemble_system_dense() {
