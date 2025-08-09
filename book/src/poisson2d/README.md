@@ -36,10 +36,12 @@ with:
 - **u**: vector of nodal values,
 - **b**: load vector from the source term.
 
-## Features
+The following features are considered:
 - Support for different element types (`P1`, `Q1`)
 - Dense and sparse matrix assembly
 - Dirichlet boundary condition handling
+
+We rely on [nalgebra](https://docs.rs/nalgebra/latest/nalgebra/) for linear algebra as it provides good support for dense and sparse matrices.
 
 ## Code Structure
 
@@ -77,9 +79,9 @@ The crate is split into the following modules:
 ## Example
 
 ```rust
-use poisson_2d::{solve_poisson_2d, Mesh2d, SolverType, DVector};
+use poisson_2d::{solve_poisson_2d, Mesh2d, SolverType};
 use poisson_2d::mesh::{Element, ElementType};
-use nalgebra::Point2;
+use nalgebra::{Point2, DVector};
 
 fn main() {
     // Build a tiny unit-square mesh with one Q1 quad (4 nodes, 1 element)
