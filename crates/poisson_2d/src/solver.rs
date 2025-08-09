@@ -1,11 +1,12 @@
-use crate::element::ReferenceElement;
-use crate::mesh::{ElementType, Mesh2d};
+use crate::element::{ElementType, ReferenceElement};
+use crate::mesh::Mesh2d;
 use crate::quadrature::QuadRule;
 use nalgebra::{DMatrix, DVector, Point2, Vector2};
 use nalgebra_sparse::{CooMatrix, CsrMatrix};
 use nalgebra_sparse_linalg::iteratives::conjugate_gradient;
 
 /// Function that assembles the FEM system using a dense matrix.
+// ANCHOR: assemble_system_dense
 pub fn assemble_system_dense<F>(mesh: &Mesh2d, source_fn: &F) -> (DMatrix<f64>, DVector<f64>)
 where
     F: Fn(f64, f64) -> f64,
@@ -84,8 +85,10 @@ where
 
     (a, b)
 }
+// ANCHOR_END: assemble_system_dense
 
 /// Function that assembles the FEM using a sparse matrix.
+// ANCHOR: assemble_system_sparse
 pub fn assemble_system_sparse<F>(mesh: &Mesh2d, source_fn: &F) -> (CsrMatrix<f64>, DVector<f64>)
 where
     F: Fn(f64, f64) -> f64,
@@ -165,8 +168,10 @@ where
     let a = CsrMatrix::from(&coo);
     (a, b)
 }
+// ANCHOR_END: assemble_system_sparse
 
 /// Function that applies Dirichlet boundary conditions to the dense FEM system.
+// ANCHOR: apply_dirichlet_dense
 pub fn apply_dirichlet_dense<G>(
     a: &mut DMatrix<f64>,
     b: &mut DVector<f64>,
@@ -200,9 +205,10 @@ pub fn apply_dirichlet_dense<G>(
         a[(j, j)] = 1.0;
         b[j] = g_j;
     }
-}
+}// ANCHOR_END: apply_dirichlet_dense
 
 /// Function that applies Dirichlet boundary conditions to the sparse FEM system.
+// ANCHOR: apply_dirichlet_sparse
 pub fn apply_dirichlet_sparse<G>(
     a: &mut CsrMatrix<f64>,
     b: &mut DVector<f64>,
@@ -261,19 +267,25 @@ pub fn apply_dirichlet_sparse<G>(
         b[j] = g_j;
     }
 }
+// ANCHOR_END: apply_dirichlet_sparse
 
 /// Function that solves the dense FEM system.
+// ANCHOR: dense_solver
 pub fn dense_solver(a: &DMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
     let chol = a.clone().cholesky()?;
     Some(chol.solve(b))
 }
+// ANCHOR_END: dense_solver
 
 /// Function that solves the sparse FEM system.
+// ANCHOR: sparse_solver
 pub fn sparse_solver(a: &CsrMatrix<f64>, b: &DVector<f64>) -> Option<DVector<f64>> {
     conjugate_gradient::solve(a, b, 1000, 1e-10)
 }
+// ANCHOR_END: sparse_solver
 
 /// Dense Poisson solver
+// ANCHOR: assemble_and_solve_dense
 pub fn assemble_and_solve_dense<F>(
     mesh: &Mesh2d,
     boundary_nodes: &[usize],
@@ -292,7 +304,9 @@ where
     // Solve linear system
     dense_solver(&a, &b).expect("failed to solve")
 }
+// ANCHOR_END: assemble_and_solve_dense
 
+// ANCHOR: assemble_and_solve_sparse
 pub fn assemble_and_solve_sparse<F>(
     mesh: &Mesh2d,
     boundary_nodes: &[usize],
@@ -311,11 +325,13 @@ where
     // Solve linear system
     sparse_solver(&a, &b).expect("failed to solve")
 }
+// ANCHOR_END: assemble_and_solve_sparse
 
+// ANCHOR: tests
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::mesh::Element;
+    use crate::element::Element;
 
     #[test]
     fn test_assemble_system_dense() {
@@ -357,3 +373,4 @@ mod tests {
         assert_eq!(b.len(), 4);
     }
 }
+// ANCHOR_END: tests

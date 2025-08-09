@@ -1,26 +1,16 @@
+use crate::element::{Element, ElementType};
 use nalgebra::Point2;
 
-#[derive(Clone, PartialEq, Eq, Debug)]
-pub enum ElementType {
-    /// 3-node triangle
-    P1,
-    /// 4-node quadrangle
-    Q1,
-}
-
-/// An element stores a vector containing its global indices.
-#[derive(Clone, Debug)]
-pub struct Element {
-    pub indices: Vec<usize>,
-}
-
+// ANCHOR: mesh_struct
 #[derive(Clone, Debug)]
 pub struct Mesh2d {
     vertices: Vec<Point2<f64>>,
     elements: Vec<Element>,
     element_type: ElementType,
 }
+// ANCHOR_END: mesh_struct
 
+// ANCHOR: mesh_impl
 impl Mesh2d {
     pub fn new(
         vertices: Vec<Point2<f64>>,
@@ -45,7 +35,9 @@ impl Mesh2d {
         &self.element_type
     }
 }
+// ANCHOR_END: mesh_impl
 
+// ANCHOR: tests
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -72,3 +64,4 @@ mod tests {
         assert_eq!(*mesh.element_type(), ElementType::Q1);
     }
 }
+// ANCHOR_END: tests
