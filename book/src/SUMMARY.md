@@ -48,6 +48,6 @@
 - [2D Poisson FEM solver 🦀🦀](poisson2d/README.md)
     - [User interface](poisson2d/user_interface.md)
     - [Mesh module](poisson2d/mesh_module.md)
-    - [Element module]()
+    - [Element module](poisson2d/element_module.md)
     - [Quadrature module]()
     - [Solver module]()
