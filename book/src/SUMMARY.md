@@ -50,4 +50,4 @@
     - [Mesh module](poisson2d/mesh_module.md)
     - [Element module](poisson2d/element_module.md)
     - [Quadrature module](poisson2d/quad_rule_module.md)
-    - [Solver module]()
+    - [Solver module](poisson2d/solver_module.md)
