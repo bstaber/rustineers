@@ -205,7 +205,7 @@ pub fn apply_dirichlet_dense<G>(
         a[(j, j)] = 1.0;
         b[j] = g_j;
     }
-}// ANCHOR_END: apply_dirichlet_dense
+} // ANCHOR_END: apply_dirichlet_dense
 
 /// Function that applies Dirichlet boundary conditions to the sparse FEM system.
 // ANCHOR: apply_dirichlet_sparse
