@@ -1,7 +1,21 @@
+// ANCHOR: imports
 use nalgebra::{Cholesky, DMatrix, DVector};
 use rand::thread_rng;
 use rand_distr::{Distribution, StandardNormal};
+// ANCHOR_END: imports
 
+// ANCHOR: struct
+pub struct KalmanFilter {
+    _state: DVector<f64>,
+    _covariance: DMatrix<f64>,
+    _state_transition_matrix: DMatrix<f64>,
+    _observation_matrix: DMatrix<f64>,
+    _state_noise_covariance: DMatrix<f64>,
+    _observation_noise_covariance: DMatrix<f64>,
+}
+// ANCHOR_END: struct
+
+// ANCHOR: error_enum
 #[derive(Debug, thiserror::Error)]
 pub enum KalmanError {
     /// Innovation covariance was not symmetric and positive definite
@@ -11,15 +25,9 @@ pub enum KalmanError {
     #[error("dimension mismatch: {0}")]
     Dim(String),
 }
-pub struct KalmanFilter {
-    _state: DVector<f64>,
-    _covariance: DMatrix<f64>,
-    _state_transition_matrix: DMatrix<f64>,
-    _observation_matrix: DMatrix<f64>,
-    _state_noise_covariance: DMatrix<f64>,
-    _observation_noise_covariance: DMatrix<f64>,
-}
+// ANCHOR_END: error_enum
 
+// ANCHOR: new
 impl KalmanFilter {
     pub fn new(
         init_state: Option<DVector<f64>>,
@@ -73,7 +81,9 @@ impl KalmanFilter {
         })
     }
 }
+// ANCHOR_END: new
 
+// ANCHOR: accessors
 impl KalmanFilter {
     pub fn state(&self) -> &DVector<f64> {
         &self._state
@@ -83,6 +93,7 @@ impl KalmanFilter {
         &self._covariance
     }
 }
+// ANCHOR_END: accessors
 
 impl KalmanFilter {
     fn predict_step(&mut self) {

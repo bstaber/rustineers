@@ -63,3 +63,37 @@ K_t = P_t^{t-1} A_t^T(A_t P_t^{t-1}A_t^T + S)^{-1}\,.
 $$
 
 Implementing the Kalman filter boils down to implement these few equations!
+
+## Crate 
+
+At the end of the chapter, we obtain a small standalone crate with the following layout:
+```text
+├── Cargo.toml
+└── src
+    ├── algorithm.rs
+    └── lib.rs
+```
+
+The module `algorithm.rs` implements the whole Kalman filter method defined as a struct with a few implementations. 
+
+For this crate, we only need a few imports from `nalgebra`, `rand`, and `rand_distr`. In the algorithm module, we have:
+
+```rust
+{{#include ../../../crates/kalman_filter/src/algorithm.rs:imports}}
+```
+
+And the `Cargo.toml` configuration file is given by
+
+```toml
+[package]
+name = "kalman_filter"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rustineers = { path = "../../" }
+nalgebra = "0.33"
+rand = "0.8"
+rand_distr = "0.4"
+thiserror = "1.0"
+```
