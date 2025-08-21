@@ -51,3 +51,8 @@
     - [Element module](poisson2d/element_module.md)
     - [Quadrature module](poisson2d/quad_rule_module.md)
     - [Solver module](poisson2d/solver_module.md)
+- [Kalman filter 🦀](kalman_filter/README.md)
+    - [KalmanFilter struct]()
+    - [Predict and update]()
+    - [Putting things together]()
+    - [Python bindings]()
