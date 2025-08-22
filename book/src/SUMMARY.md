@@ -61,6 +61,5 @@
 - [Kalman filter 🦀🦀](kalman_filter/README.md)
     - [KalmanFilter struct](kalman_filter/kf_struct.md)
     - [Constructor](kalman_filter/constructor.md)
-    - [Predict and update]()
-    - [Putting things together]()
-    - [Python bindings]()
+    - [Predict and update](kalman_filter/predict_and_update.md)
+    - [Putting things together](kalman_filter/putting_things_together.md)

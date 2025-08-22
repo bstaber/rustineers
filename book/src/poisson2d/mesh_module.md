@@ -2,7 +2,7 @@
 
 The `mesh` module defines the mesh data structure used throughout the Poisson 2D solver.  
 It encapsulates the geometrical discretization of the domain, i.e., the set of vertices (points in space) and the list of finite elements that connect those vertices.  
-Any details related to the definition of an element—such as connectivity, shape functions, or element types are implemented in [`element.rs`](element_module.md) and simply referenced here.
+Any details related to the definition of an elemen such as connectivity, shape functions, or element types are implemented in [`element.rs`](element_module.md) and simply referenced here.
 
 ## Mesh struct
 
