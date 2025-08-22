@@ -20,7 +20,7 @@ struct RidgeEstimator<F> {
 }
 ```
 
-Here, `F` is a type parameter — it could be `f32`, `f64`, or another type. In Rust, generic types have no behavior by default.
+Here, `F` is a type parameter: it could be `f32`, `f64`, or another type. In Rust, generic types have no behavior by default.
 
 ~~~admonish bug
 ```rust

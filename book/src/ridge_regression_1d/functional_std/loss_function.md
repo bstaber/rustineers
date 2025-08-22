@@ -75,7 +75,7 @@ In this chapter, we will mostly use these types but things can easily get more t
 
 ## Inlined iterator-based implementation
 
-Let's implement the loss function in a more compact way. Instead of breaking the computation into multiple intermediate steps—like computing `y_hat`, `residuals`, and then squaring each residual—here we inline all computations into a single expression using iterators and closures.
+Let's implement the loss function in a more compact way. Instead of breaking the computation into multiple intermediate steps like computing `y_hat`, `residuals`, and then squaring each residual, here we inline all computations into a single expression using iterators and closures.
 
 This is ideal for demonstrating the expressive power of Rust's iterator API, especially once you're comfortable with basic slice handling and `.map()` chaining.
 

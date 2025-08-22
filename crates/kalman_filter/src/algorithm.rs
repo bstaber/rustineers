@@ -95,7 +95,10 @@ impl KalmanFilter {
 }
 // ANCHOR_END: accessors
 
+// ANCHOR: predict_and_update
 impl KalmanFilter {
+
+    // ANCHOR: predict
     fn predict_step(&mut self) {
         self._state = &self._state_transition_matrix * &self._state;
         self._covariance = &self._state_transition_matrix
@@ -103,7 +106,9 @@ impl KalmanFilter {
             * &self._state_transition_matrix.transpose()
             + &self._state_noise_covariance;
     }
+    // ANCHOR_END: predict
 
+    // ANCHOR: update
     fn update_step(&mut self, observation: DVector<f64>) -> Result<(), KalmanError> {
         let h_matrix = &self._observation_matrix;
         let r_matrix = &self._observation_noise_covariance;
@@ -134,7 +139,9 @@ impl KalmanFilter {
 
         Ok(())
     }
+    // ANCHOR_end: update
 
+    // ANCHOR: step
     pub fn step(&mut self, observation: Option<DVector<f64>>) -> Result<(), KalmanError> {
         self.predict_step();
         if let Some(obs) = observation {
@@ -142,8 +149,9 @@ impl KalmanFilter {
         }
         Ok(())
     }
+    // ANCHOR_END: step
 }
-
+// ANCHOR_END: predict_and_update
 
 #[cfg(test)]
 mod tests {
