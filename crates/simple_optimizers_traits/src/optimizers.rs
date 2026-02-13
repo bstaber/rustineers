@@ -122,17 +122,14 @@ mod tests {
     #[test]
     fn test_momentum_constructor() {
         let opt = Momentum::new(0.01, 0.9, 10);
-        match opt {
-            Momentum {
-                learning_rate,
-                momentum,
-                velocity,
-            } => {
-                assert_eq!(learning_rate, 0.01);
-                assert_eq!(momentum, 0.9);
-                assert_eq!(velocity.len(), 10);
-            }
-        }
+        let Momentum {
+            learning_rate,
+            momentum,
+            velocity,
+        } = opt;
+        assert_eq!(learning_rate, 0.01);
+        assert_eq!(momentum, 0.9);
+        assert_eq!(velocity.len(), 10);
     }
 
     #[test]

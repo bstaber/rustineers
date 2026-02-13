@@ -58,7 +58,7 @@ impl KalmanFilter {
         let m: usize = observation_matrix.nrows();
         if observation_matrix.ncols() != n {
             return Err(KalmanError::Dim("H must be m x n".to_string()));
-        };
+        }
         if observation_noise_covariance.shape() != (m, m) {
             return Err(KalmanError::Dim("R must be m × m".to_string()));
         }
@@ -97,7 +97,6 @@ impl KalmanFilter {
 
 // ANCHOR: predict_and_update
 impl KalmanFilter {
-
     // ANCHOR: predict
     fn predict_step(&mut self) {
         self._state = &self._state_transition_matrix * &self._state;
@@ -139,7 +138,7 @@ impl KalmanFilter {
 
         Ok(())
     }
-    // ANCHOR_end: update
+    // ANCHOR_END: update
 
     // ANCHOR: step
     pub fn step(&mut self, observation: Option<DVector<f64>>) -> Result<(), KalmanError> {
@@ -167,8 +166,8 @@ mod tests {
 
         // no initial state or covariance provided
         let kf_model = KalmanFilter::new(
-            None,       // init_state
-            None,       // init_covariance
+            None, // init_state
+            None, // init_covariance
             a_state,
             h_obs,
             state_noise,
@@ -192,8 +191,8 @@ mod tests {
 
         // no initial state or covariance provided
         let kf_model = KalmanFilter::new(
-            None,       // init_state
-            None,       // init_covariance
+            None, // init_state
+            None, // init_covariance
             a_state,
             h_obs,
             state_noise,
