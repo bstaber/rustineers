@@ -19,20 +19,20 @@ let nothing: Option<i32> = None;
 
 -   **unwrap**: take the value, panic if `None`.
 
-``` rust
+``` rust,ignore
 println!("{}", maybe_num.unwrap()); // 42
 println!("{}", nothing.unwrap());   // panics
 ```
 
 -   **expect**: like `unwrap` but with a custom panic message.
 
-``` rust
+``` rust,ignore
 println!("{}", maybe_num.expect("Should have a value"));
 ```
 
 -   **if let**: execute code only when the option is `Some`.
 
-``` rust
+``` rust,ignore
 if let Some(x) = maybe_num {
     println!("Got {}", x);
 }
@@ -40,7 +40,7 @@ if let Some(x) = maybe_num {
 
 -   **match**: handle both cases explicitly.
 
-``` rust
+``` rust,ignore
 match maybe_num {
     Some(x) => println!("Got {}", x),
     None => println!("Got nothing"),
@@ -49,7 +49,7 @@ match maybe_num {
 
 -   **unwrap_or / unwrap_or_else**: provide a fallback value.
 
-``` rust
+``` rust,ignore
 let x = nothing.unwrap_or(0); // x = 0
 ```
 
@@ -72,7 +72,7 @@ fn divide(a: i32, b: i32) -> Result<i32, &'static str> {
 
 -   **unwrap / expect**: panic if `Err`.
 
-``` rust
+``` rust,ignore
 println!("{}", divide(4, 2).unwrap()); // 2
 println!("{}", divide(4, 0).unwrap()); // panics
 ```

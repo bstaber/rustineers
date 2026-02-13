@@ -9,7 +9,7 @@ Finally, the step function combines both into one routine, making it convenient 
 <details>
 <summary>Click here to view the full implementation: <b>algorithm.rs</b>. We break into down in the sequel of this section. </summary>
 
-```rust
+```rust,ignore
 {{#include ../../../crates/kalman_filter/src/algorithm.rs}}
 ```
 </details>
@@ -22,7 +22,7 @@ The method takes `&mut self`. This means we are borrowing the filter mutably, be
 
 The code uses `&self._state_transition_matrix * &self._state`. In `nalgebra`, the multiplication operator (`*`) is overloaded for matrices and vectors. We pass references to avoid unnecessary cloning of large matrices/vectors.
 
-```rust
+```rust,ignore
 {{#include ../../../crates/kalman_filter/src/algorithm.rs:predict}}
 ```
 
@@ -46,7 +46,7 @@ Regarding `nalgebra` details:
 <details>
 <summary><b>Click here to view the update function</b> </summary>
 
-```rust
+```rust,ignore
 {{#include ../../../crates/kalman_filter/src/algorithm.rs:update}}
 ```
 </details>
@@ -54,7 +54,7 @@ Regarding `nalgebra` details:
 
 ## Step function
 
-```rust
+```rust,ignore
 {{#include ../../../crates/kalman_filter/src/algorithm.rs:step}}
 ```
 
