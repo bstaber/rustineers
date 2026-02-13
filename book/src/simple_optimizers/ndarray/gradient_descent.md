@@ -24,6 +24,6 @@ Some notes:
 
 - `weights.zip_mut_with(&grads, |w, &g| {{ ... }})`: This is a mutable zip operation from the `ndarray` crate. It walks over `weights` and `grads`, applying the closure to each pair.
 
-- [zip_mut_with](https://docs.rs/ndarray/latest/ndarray/struct.ArrayBase.html#method.zip_mut_with) is a method defined by the `Zip` trait, which is implemented for [ArrayBase](https://docs.rs/ndarray/latest/ndarray/struct.ArrayBase.html), and in particular for [Array1<f64>](https://docs.rs/ndarray/latest/ndarray/type.Array1.html). That’s why we can call it directly on `weights`.
+- [zip_mut_with](https://docs.rs/ndarray/latest/ndarray/struct.ArrayBase.html#method.zip_mut_with) is a method defined by the `Zip` trait, which is implemented for [ArrayBase](https://docs.rs/ndarray/latest/ndarray/struct.ArrayBase.html), and in particular for ["Array1](https://docs.rs/ndarray/latest/ndarray/type.Array1.html). That’s why we can call it directly on `weights`.
 
 - In the closure statement we wrote: `|w, &g| *w -= self.step_size * g;`. Here, `w` is a mutable reference to each weight element, so we dereference it using `*w` to update its value. The `&g` in the closure means we’re pattern-matching by reference to avoid cloning or copying each `f64`.
