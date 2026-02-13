@@ -2,7 +2,7 @@
 
 Here is how to set up and run this model using our `KalmanFilter` struct.
 
-```rust
+```rust,ignore
 use nalgebra::{DMatrix, DVector};
 use kalman_filter::KalmanFilter;
 

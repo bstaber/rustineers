@@ -61,11 +61,13 @@ fn identity<T>(x: T) -> T {
 This works with any type `T`, as long as the usage allows it. You can also restrict what kinds of types `T` can be by adding trait bounds like `T: SomeTrait`.
 We will introduce traits and trait bounds in another digest. As an illustration, consider this function:
 ```rust
-fn add<T: Sum>(x: T, y: T) -> T {
+use std::ops::Add;
+
+fn add<T: Add<Output = T>>(x: T, y: T) -> T {
     x + y
 }
 ```
-Here, only types `T` that implement the `Sum` trait can be used.
+Here, only types `T` that implement the `Add` trait can be used.
 
 ## Functions as values
 Functions can be passed around like any other value:
