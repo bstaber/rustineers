@@ -969,6 +969,7 @@ version = "0.1.0"
 dependencies = [
  "ndarray 0.16.1",
  "rustineers",
+ "thiserror 1.0.69",
 ]
 
 [[package]]

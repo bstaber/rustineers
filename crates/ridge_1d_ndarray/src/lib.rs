@@ -1,6 +1,6 @@
 pub mod regressor;
 use ndarray::array;
-pub use regressor::RidgeEstimator;
+pub use regressor::{RidgeError, RidgeEstimator};
 
 pub fn run_demo() {
     println!("-----------------------------------------------------");

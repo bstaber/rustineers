@@ -1,8 +1,9 @@
 [package]
 name = "ridge_1d_ndarray"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
 rustineers = { path = "../../" }
 ndarray = "0.16.1"
+thiserror = "1.0"

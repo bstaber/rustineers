@@ -1,6 +1,9 @@
 default:
     @just --summary
 
+check:
+    cargo check --workspace
+
 build:
     cargo build --workspace
 
