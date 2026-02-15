@@ -1,6 +1,6 @@
 # Functional: introduction
 
-This section focuses on implementinng the 1D Ridge problem using functions and Rust standard library only. It's divided into 5 subsections:
+This section focuses on implementing the 1D Ridge problem using functions and Rust standard library only. It's divided into 5 subsections:
 
 1) [Loss function](loss_function.md): Shows how to implement the Ridge loss function in two simple ways.
 2) [Closed-form solution](closed_form_solution.md): Implements the closed-form solution of the Ridge optimization problem.

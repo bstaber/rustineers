@@ -1,6 +1,6 @@
 # Structured: introduction
 
-This section focuses on implementinng the 1D Ridge problem using functions, structures, traits and Rust standard library only. It's divided into 3 subsections:
+This section focuses on implementing the 1D Ridge problem using functions, structures, traits and Rust standard library only. It's divided into 3 subsections:
 
 1) [Closed-form solution](closed_form_solution.md): Implements the closed-form solution of the Ridge optimization problem using a `struct` to define a `RidgeEstimator` type. It shows how to implement a constructor together with `fit` and `predict` functions.
 2) [Gradient descent](gradient_descent.md): Solves the Ridge problem using gradient descent using a `struct` as well to define a `RidgeGradientDescent` type.

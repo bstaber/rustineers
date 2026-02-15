@@ -1,4 +1,5 @@
 use ndarray::Array1;
+use thiserror::Error;
 
 /// A Ridge regression estimator using `ndarray` for vectorized operations.
 ///
@@ -11,6 +12,13 @@ pub struct RidgeEstimator {
     pub beta: Option<f64>,
 }
 // ANCHOR_END: struct
+
+/// Errors that can occur during RidgeEstimator operations.
+#[derive(Debug, Error)]
+pub enum RidgeError {
+    #[error("Model not fitted: call fit() before predict()")]
+    NotFitted,
+}
 
 // ANCHOR: ridge_estimator_impl_new_fit
 impl RidgeEstimator {
@@ -58,10 +66,10 @@ impl RidgeEstimator {
     /// # Returns
     /// A `Result` containing the predicted values, or an error if the model
     /// has not been fitted.
-    pub fn predict(&self, x: &Array1<f64>) -> Result<Array1<f64>, String> {
+    pub fn predict(&self, x: &Array1<f64>) -> Result<Array1<f64>, RidgeError> {
         match &self.beta {
             Some(beta) => Ok(*beta * x),
-            None => Err("Model not fitted".to_string()),
+            None => Err(RidgeError::NotFitted),
         }
     }
 }
@@ -83,10 +91,10 @@ mod tests {
     fn test_unfitted_estimator() {
         let model = RidgeEstimator::new();
         let x: Array1<f64> = array![1.0, 2.0];
-        let result: Result<Array1<f64>, String> = model.predict(&x);
+        let result: Result<Array1<f64>, RidgeError> = model.predict(&x);
 
         assert!(result.is_err());
-        assert_eq!(result.unwrap_err(), "Model not fitted");
+        assert!(matches!(result.unwrap_err(), RidgeError::NotFitted));
     }
 
     #[test]
